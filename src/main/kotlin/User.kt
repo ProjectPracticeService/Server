@@ -1,3 +1,5 @@
+import kotlinx.serialization.*
+
 open class User(_id: Int, _role: Role, _username: String, _password: String, _email: String,
            _name: String, _sureName: String, _status: String, _secondName: String, _telegramId: String){
 
