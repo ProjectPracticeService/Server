@@ -1,6 +1,6 @@
-build
-gradle
+/build
+/gradle
 gradlew
 gradle.file
-.gradle
+/.gradle
 .idea
