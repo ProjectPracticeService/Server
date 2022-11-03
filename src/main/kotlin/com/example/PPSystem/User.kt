@@ -1,4 +1,4 @@
-import liquibase.pro.packaged.T
+
 
 
 abstract class User(){

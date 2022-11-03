@@ -1,19 +1,19 @@
-package controller
+package com.example.PPSystem.controller
 
-import exceptions.NotFoundException
+import com.example.PPSystem.exceptions.NotFoundException
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("massage")
+@RequestMapping("message")
 class MessageController {
 
     var list: List<Map<String, Int>> = listOf(mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key11" to 11))
 
     @GetMapping
-    fun mes(): String {
+    fun list():String{
         return "index"
     }
 
@@ -23,8 +23,5 @@ class MessageController {
         return list.stream()
             .findFirst()
             .orElseThrow { NotFoundException() }
-
-
     }
-
 }
