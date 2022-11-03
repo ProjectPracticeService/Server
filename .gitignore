@@ -1,3 +1,10 @@
+/build
+/gradle
+gradlew
+gradle.file
+/.gradle
+.idea
+
 HELP.md
 .gradle
 build/
@@ -36,8 +43,5 @@ out/
 ### VS Code ###
 .vscode/
 
-/build
-/gradle
-gradlew
-/.gradle
+
 
