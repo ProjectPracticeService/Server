@@ -24,12 +24,6 @@ jobs:
         java-version: '17'
         distribution: adopt
         
-    - name: Generate buildnumber
-      id: buildnumber
-      uses: einaregilsson/build-number@v3
-      with:
-        token: ${{ secrets.ACCESS_TOKEN }}  
-        
     - name: Login to GitHub Container Registry
       run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       
