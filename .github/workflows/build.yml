@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  IMAGE_NAME: project-pratice-server-image
+  IMAGE_NAME: image
 
 jobs:
   build:
