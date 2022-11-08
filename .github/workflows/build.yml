@@ -21,6 +21,7 @@ jobs:
       uses: actions/setup-java@v3.6.0
       with:
         java-version: '17'
+        distribution: adopt
         
     - name: Login to GitHub Container Registry
       run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
