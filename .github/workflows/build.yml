@@ -33,7 +33,7 @@ jobs:
       run: ./gradlew bootBuildImage --imageName=$IMAGE_NAME
       
     - name: Apply lowercase on repository name
-    - id: repository
+      id: repository
       uses: ASzc/change-string-case-action@v2
       with:
         string: ${{ github.repository_owner }}
