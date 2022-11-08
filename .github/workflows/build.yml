@@ -6,7 +6,8 @@ on:
       - master
 
 env:
-  IMAGE_NAME: projectPracticeImage
+  IMAGE_NAME: ru.mephi.pp:projectPracticeImage
+  VERSION: latest
 
 jobs:
   build:
@@ -30,11 +31,10 @@ jobs:
       run: chmod +x gradlew
       
     - name: Build a container image
-      run: ./gradlew bootBuildImage --imageName=$IMAGE_NAME
+      run: ./gradlew bootBuildImage --imageName=$IMAGE_NAME:$VERSION
       
     - name: Tag & publish to GitHub Container Registry
       run: |
         IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-        VERSION=latest
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
         docker push $IMAGE_ID:$VERSION
