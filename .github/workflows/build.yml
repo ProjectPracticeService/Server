@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  IMAGE_NAME: project-pratice-image
+  IMAGE_NAME: project-pratice-server-image
 
 jobs:
   build:
@@ -36,7 +36,7 @@ jobs:
       id: repository
       uses: ASzc/change-string-case-action@v2
       with:
-        string: ${{ github.repository_owner }}
+        string: ${{ github.repository }}
 
     - name: Tag & publish to GitHub Container Registry
       run: |
