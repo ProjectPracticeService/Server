@@ -31,7 +31,7 @@ class StudentController {
     }
 
     @DeleteMapping("{id}")
-    fun deleteStudentById(@PathVariable("id") student: Student) {
+    fun deleteStudent(@PathVariable("id") student: Student) {
         studentRepo.delete(student)
     }
 

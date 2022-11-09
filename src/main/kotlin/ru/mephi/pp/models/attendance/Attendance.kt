@@ -19,9 +19,6 @@ class Attendance(
     @Column (name = "Date")
     var date: Date,
 
-    @Column (name = "UserId")
-    var userId: Int,
-
     @Column (name = "Status")
     var status: Boolean
 

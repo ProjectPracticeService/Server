@@ -11,7 +11,7 @@ import javax.persistence.Table
 class Team(
 
     @Column (name = "ID")
-    var id: Int,
+    var id: Long,
 
     @ManyToMany
     var members: List<Student>,

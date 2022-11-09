@@ -9,13 +9,13 @@ data class EducationalOrganization(
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
-    @Column (name = "")
-    var organizationId: Int,
+    @Column (name = "ID")
+    var id: Long,
 
-    @Column (name = "")
+    @Column (name = "name")
     var name: String,
 
-    @Column (name = "")
+    @Column (name = "city")
     var city: Int,
 
     )
