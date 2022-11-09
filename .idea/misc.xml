@@ -5,7 +5,10 @@
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+<<<<<<< HEAD
   <component name="ProjectType">
     <option name="id" value="jpab" />
   </component>
+=======
+>>>>>>> ce03129 (Added hibernate. Added models: Student, Admin, Mentor (Heirs of the User))
 </project>

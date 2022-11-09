@@ -4,6 +4,7 @@ val kotlinVersion = "1.7.20"
 val springBootVersion = "2.7.5"
 val jacksonVersion = "2.14.0"
 val yamlVersion = "1.33"
+val jaxb by configurations.creating
 
 plugins {
 	id("org.springframework.boot") version "2.7.5"
@@ -20,7 +21,12 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+	jaxb
+}
+
 dependencies {
+
 	// Kotlin
 	implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
@@ -30,6 +36,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
 	developmentOnly("org.springframework.boot:spring-boot-devtools:$springBootVersion")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+	implementation("javax.xml.bind:jaxb-api")
+//	implementation("com.sun.xml.bind:jaxb-core")
+//	implementation("com.sun.xml.bind:jaxb-impl")
 
 	// Jackson
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
