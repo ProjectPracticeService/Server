@@ -9,10 +9,10 @@ import javax.persistence.Table
 
 @Entity
 @Table (name = "attendance")
-data class Attendance(
-    @GeneratedValue( strategy = GenerationType.AUTO )
+class Attendance(
 
     @Id
+    @GeneratedValue( strategy = GenerationType.AUTO )
     @Column (name = "ID")
     var id: Long,
 

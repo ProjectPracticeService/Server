@@ -1,17 +1,23 @@
 package ru.mephi.pp.models.project
 
-class PortfolioProject (_projectId: Int, _name: String, _description: String, _tecnologyStack: List<String>){
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Table
 
-    val projectId: Int
-    var name: String
-    var description: String
-    var tecnologyStack: List<String>
+@Entity
+@Table(name = "portfolioProjects")
+class PortfolioProject (
 
-    init {
-        projectId = _projectId
-        name = _name
-        description = _description
-        tecnologyStack = _tecnologyStack
-    }
+    @Column (name = "ID")
+    var id: Long,
 
-}
+    @Column (name = "name")
+    var name: String,
+
+    @Column (name = "description")
+    var description: String,
+
+    @Column (name = "tecnologyStack")
+    var tecnologyStack: List<String>,
+
+)
