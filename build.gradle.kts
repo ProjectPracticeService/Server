@@ -27,6 +27,7 @@ dependencies {
 
 	// Spring Boot
 	implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
 	developmentOnly("org.springframework.boot:spring-boot-devtools:$springBootVersion")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 
@@ -35,6 +36,10 @@ dependencies {
 
 	// YAML
 	implementation("org.yaml:snakeyaml:$yamlVersion")
+
+	//БД
+	implementation("org.postgresql:postgresql")
+	implementation("org.projectlombok:lombok")
 }
 
 tasks.withType<KotlinCompile> {

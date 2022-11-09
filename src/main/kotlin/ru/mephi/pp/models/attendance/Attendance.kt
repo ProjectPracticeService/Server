@@ -1,17 +1,28 @@
 package ru.mephi.pp.models.attendance
-
 import ru.mephi.pp.models.profile.Date
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.Table
 
-class Attendance(_date: Date, _userId: Int, _status: Boolean) {
+@Entity
+@Table (name = "attendance")
+data class Attendance(
+    @GeneratedValue( strategy = GenerationType.AUTO )
 
-    var date: Date
-    var userId: Int
+    @Id
+    @Column (name = "ID")
+    var id: Long,
+
+    @Column (name = "Date")
+    var date: Date,
+
+    @Column (name = "UserId")
+    var userId: Int,
+
+    @Column (name = "Status")
     var status: Boolean
 
-    init {
-        date = _date
-        userId = _userId
-        status = _status
-    }
-
-}
+)

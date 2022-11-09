@@ -1,5 +1,6 @@
 package ru.mephi.pp.models.attendance
 
+//бесполезный нужный класс
 class AttendanceJournal {
 
     var attendList: List<Attendance> = listOf()
