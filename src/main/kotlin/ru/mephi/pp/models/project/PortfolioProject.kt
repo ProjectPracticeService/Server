@@ -17,7 +17,7 @@ class PortfolioProject (
     @Column (name = "description")
     var description: String,
 
-    @Column (name = "tecnologyStack")
-    var tecnologyStack: List<String>,
+    @Column(name = "technologyStack")
+    var technologyStack: List<String>,
 
-)
+    )
