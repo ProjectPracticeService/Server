@@ -15,15 +15,15 @@ class Task(
     @ManyToOne
     var user: User,
 
-    @Column (name = "")
+    @Column (name = "description")
     var description: String,
 
-    @Column (name = "")
+    @Column (name = "dateFrom")
     var dateFrom: Date,
 
-    @Column (name = "")
+    @Column (name = "dateTo")
     var dateTo: Date,
 
-    @Column (name = "")
+    @Column (name = "status")
     var status: TaskStatus
 )
