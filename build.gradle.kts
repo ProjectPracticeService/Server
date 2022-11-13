@@ -4,6 +4,7 @@ val kotlinVersion = "1.7.20"
 val springBootVersion = "2.7.5"
 val jacksonVersion = "2.14.0"
 val yamlVersion = "1.33"
+val mySQLVersion = "8.0.31"
 val jaxb by configurations.creating
 
 plugins {
@@ -46,8 +47,10 @@ dependencies {
 	// YAML
 	implementation("org.yaml:snakeyaml:$yamlVersion")
 
+	// MySQL
+	implementation("com.mysql:mysql-connector-j:$mySQLVersion")
+
 	//БД
-	implementation("org.postgresql:postgresql")
 	implementation("org.projectlombok:lombok")
 }
 
