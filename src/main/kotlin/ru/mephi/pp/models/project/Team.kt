@@ -1,20 +1,25 @@
 package ru.mephi.pp.models.project
 
-class Team(_teamId: Int, _memberIds: List<Int>, _mentorId: Int, _status: Status) {
+import ru.mephi.pp.models.user.Student
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.ManyToMany
+import javax.persistence.Table
 
-    val teamId: Int
-    var memberIds: List<Int>
-    var mentorId: Int
-    var status: Status
+@Entity
+@Table(name = "Teams")
+class Team(
 
-    init {
-        teamId = _teamId
-        memberIds = _memberIds
-        mentorId = _mentorId
-        status = _status
-    }
+    @Column (name = "ID")
+    var id: Long,
 
-    fun addMemberById(id: Int): Boolean {
-        return true
-    }
-}
+    @ManyToMany
+    var members: List<Student>,
+
+    @Column (name = "mentorId")
+    var mentorId: Int,
+
+    @Column (name = "status")
+    var status: Status,
+
+)

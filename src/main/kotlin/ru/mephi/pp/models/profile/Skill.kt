@@ -1,17 +1,27 @@
 package ru.mephi.pp.models.profile
 
-class Skill(_skillId: Int, _name: String, _experience: String, _proficiencyLevel: ProficiencyLevel) {
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Table
 
-    var skillId: Int
-    var name: String
-    var experience: String
+@Entity
+@Table(name = "skills")
+class Skill(
+
+    @Column (name = "ID")
+    var id: Long,
+
+    @Column (name = "name")
+    var name: String,
+
+    @Column (name = "experience")
+    var experience: String,
+
+    @Column (name = "proficiencyLevel")
     var proficiencyLevel: ProficiencyLevel
 
-    init {
-        skillId = _skillId
-        name = _name
-        experience = _experience
-        proficiencyLevel = _proficiencyLevel
-    }
+){
+
+
 
 }

@@ -1,68 +1,35 @@
 package ru.mephi.pp.controllers
 
 import org.springframework.web.bind.annotation.*
-import ru.mephi.pp.exceptions.NotFoundException
-import ru.mephi.pp.models.profile.EducationalOrganization
+import org.springframework.beans.BeanUtils
+import org.springframework.beans.factory.annotation.Autowired
 import ru.mephi.pp.models.user.Student
+import ru.mephi.pp.repo.StudentRepo
+import ru.mephi.pp.service.StudentService
 
 @RestController
 @RequestMapping("student")
 class StudentController {
 
-    val eduOrg: EducationalOrganization = EducationalOrganization(1, "НИЯУ МИФИ", 3)
-    val student1: Student = Student(
-        1, ru.mephi.pp.models.user.Role.Student, "Гоша", "qwerty123", "gosha@yandex.ru",
-        "Гоша", "Курочкин", "кодер", "Егорович", "@goshka_kod", "mobile-developer", eduOrg
-    )
+    @Autowired
+    lateinit var studentService: StudentService
 
-    val student2: Student = Student(
-        2, ru.mephi.pp.models.user.Role.Student, "Гоша", "qwerty123", "gosha@yandex.ru",
-        "Гоша", "Курочкин", "кодер", "Егорович", "@goshka_kod", "mobile-developer", eduOrg
-    )
+    @GetMapping("/all")
+    fun getAll() = studentService.getAll()
 
-    val student3: Student = Student(
-        3, ru.mephi.pp.models.user.Role.Student, "Гоша", "qwerty123", "gosha@yandex.ru",
-        "Гоша", "Курочкин", "кодер", "Егорович", "@goshka_kod", "mobile-developer", eduOrg
-    )
-
-    private var counter: Int = 4
-    private val list: MutableSet<Student> = mutableSetOf(student1, student2, student3)
-
-    fun getStudent(@PathVariable id: Int): Student {
-        return list.stream()
-            .filter { it.id == id }
-            .findFirst()
-            .orElseThrow { NotFoundException() }
-    }
-
-
-    @GetMapping("{id}")
-    fun getStudentById(@PathVariable id: Int): Student {
-        val exception: NotFoundException
-        return list.stream()
-            .filter { it.id == id }
-            .findFirst()
-            .orElseThrow { NotFoundException() }
+    @GetMapping
+    fun getById(@RequestParam id:Long){
+        studentService.findById(id)
     }
 
     @PostMapping
-    fun createStudent(@RequestBody student: Student): Student {
-        student.id = counter
-        counter++
-        list.add(student)
-        return student
+    fun addNewStudent(@RequestBody student: Student){
+        studentService.add(student)
     }
 
-    @PutMapping("{id}")
-    fun updateStudentById(@PathVariable id: Int, @RequestBody student: Student): Student {
-        var studentFromDB: Student = getStudent(id)
-        return studentFromDB
-    }
-
-    @DeleteMapping("{id}")
-    fun deleteStudentById(@PathVariable id: Int) {
-        var student: Student = getStudent(id)
-        list.remove(student)
+    @DeleteMapping
+    fun deleteStudent(@RequestParam id: Long){
+        studentService.deleteById(id)
     }
 
 }
