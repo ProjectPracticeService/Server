@@ -2,34 +2,37 @@ package ru.mephi.pp.controllers
 
 import org.springframework.web.bind.annotation.*
 import org.springframework.beans.BeanUtils
-import org.springframework.beans.factory.annotation.Autowired
 import ru.mephi.pp.models.user.Admin
 import ru.mephi.pp.repo.AdminRepo
-import ru.mephi.pp.service.AdminService
 
 @RestController
 @RequestMapping("admin")
 class AdminController {
 
-    @Autowired
-    lateinit var adminService: AdminService
+    lateinit var adminRepo:AdminRepo
 
-    @GetMapping("/all")
-    fun getAll() = adminService.getAll()
-
-    @GetMapping
-    fun getById(@RequestParam id:Long){
-        adminService.findById(id)
+    @GetMapping("{id}")
+    fun getAdmin(@PathVariable("id") admin: Admin): Admin {
+        return admin
     }
 
     @PostMapping
-    fun addNewAdmin(@RequestBody admin: Admin){
-        adminService.add(admin)
+    fun createAdmin(@RequestBody admin: Admin): Admin {
+        return adminRepo.save(admin)
     }
 
-    @DeleteMapping
-    fun deleteAdmin(@RequestParam id: Long){
-        adminService.deleteById(id)
+    @PutMapping("{id}")
+    fun updateAdmin(
+        @PathVariable("id") adminFromDb: Admin,
+        @RequestBody admin: Admin
+    ):Admin{
+        BeanUtils.copyProperties(admin, adminFromDb, "id")
+        return adminRepo.save(adminFromDb)
+    }
+
+    @DeleteMapping("{id}")
+    fun deleteAdmin(@PathVariable("id") admin: Admin) {
+        adminRepo.delete(admin)
     }
 
 }
