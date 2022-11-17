@@ -10,10 +10,9 @@ import ru.mephi.pp.service.SkillService
 
 @RestController
 @RequestMapping("skill")
-class SkillController {
-
-    @Autowired(required = true)
-    var skillService: SkillService = SkillService()
+class SkillController(
+    @Autowired private val skillService: SkillService
+) {
 
     var count: Long = 0
 

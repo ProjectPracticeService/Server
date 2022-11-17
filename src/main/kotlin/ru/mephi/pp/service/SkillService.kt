@@ -6,10 +6,9 @@ import ru.mephi.pp.models.profile.Skill
 import ru.mephi.pp.repo.SkillRepo
 
 @Service
-class SkillService {
-
-    @Autowired(required = false)
-    private lateinit var skillCrudRepository: SkillRepo
+class SkillService(
+    @Autowired private val skillCrudRepository: SkillRepo
+) {
 
     fun getAll(): MutableIterable<Skill> = skillCrudRepository.findAll()
 

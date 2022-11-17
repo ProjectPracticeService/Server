@@ -1,15 +1,10 @@
 package ru.mephi.pp
 
-import org.hibernate.Session
-import org.hibernate.SessionFactory
-
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
-import ru.mephi.pp.models.profile.EducationalOrganization
 import java.util.Properties
 
-@SpringBootApplication(exclude = [DataSourceAutoConfiguration::class])
+@SpringBootApplication
 class PpSystemApplication
 
 fun main(args: Array<String>) {
