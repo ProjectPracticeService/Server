@@ -1,25 +1,29 @@
 package ru.mephi.pp.models.attendance
-import ru.mephi.pp.models.profile.Date
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Table
+import ru.mephi.pp.models.project.Project
+import ru.mephi.pp.models.user.User
+import java.util.*
+import javax.persistence.*
 
 @Entity
-@Table (name = "attendance")
+@Table(name = "attendance")
 class Attendance(
-
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
-    @Column (name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     var id: Long,
 
-    @Column (name = "Date")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
+    var project: Project,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    var user: User,
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date")
     var date: Date,
 
-    @Column (name = "Status")
+    @Column(name = "status")
     var status: Boolean
-
 )

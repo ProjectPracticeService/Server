@@ -1,29 +1,37 @@
 package ru.mephi.pp.models.tasks
 
-import ru.mephi.pp.models.profile.Date
+import ru.mephi.pp.models.project.Project
 import ru.mephi.pp.models.user.User
+import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "tasks")
 class Task(
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     var id: Long,
 
-    @ManyToOne
-    var user: User,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
+    var project: Project,
 
-    @Column (name = "description")
+    @ManyToMany(mappedBy = "tasks")
+    var assigneesId: List<User>,
+
+    @Column(name = "description")
     var description: String,
 
-    @Column (name = "dateFrom")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dateFrom")
     var dateFrom: Date,
 
-    @Column (name = "dateTo")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dateTo")
     var dateTo: Date,
 
-    @Column (name = "status")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     var status: TaskStatus
 )

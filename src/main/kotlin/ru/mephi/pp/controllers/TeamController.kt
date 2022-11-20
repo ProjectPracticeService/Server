@@ -1,10 +1,8 @@
 package ru.mephi.pp.controllers
 
 import org.springframework.web.bind.annotation.*
-import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
-import ru.mephi.pp.models.project.Team
-import ru.mephi.pp.repo.TeamRepo
+import ru.mephi.pp.models.project.Project
 import ru.mephi.pp.service.TeamService
 
 @RestController
@@ -23,7 +21,7 @@ class TeamController {
     }
 
     @PostMapping
-    fun addNewTeam(@RequestBody team: Team){
+    fun addNewTeam(@RequestBody team: Project){
         teamService.add(team)
     }
 

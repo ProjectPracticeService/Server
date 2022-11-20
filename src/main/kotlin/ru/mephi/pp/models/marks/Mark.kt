@@ -1,29 +1,30 @@
 package ru.mephi.pp.models.marks
 
-import ru.mephi.pp.models.profile.Date
+import ru.mephi.pp.models.project.Project
 import ru.mephi.pp.models.user.User
+import java.sql.Timestamp
 import javax.persistence.*
 
-
 @Entity
-@Table(name = "Marks")
+@Table(name = "marks")
 class Mark(
-
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
-    @Column (name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     var id: Long,
 
-    @Column (name = "mark")
-    var mark: MarkValue,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
+    var project: Project,
 
-    @OneToMany
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     var user: User,
 
-    @Column (name = "pageId")
-    var pageId: Int,
+    @Column(name = "mark")
+    @Enumerated(EnumType.STRING)
+    var mark: MarkValue,
 
-    @Column (name = "date")
-    var date: Date
-
-    )
+    @Column(name = "date")
+    var date: Timestamp
+)

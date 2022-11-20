@@ -1,20 +1,23 @@
 package ru.mephi.pp.models.profile
 
+import ru.mephi.pp.models.user.User
 import javax.persistence.*
 
 
-@Table(name = "educationalOrganization")
 @Entity
-data class EducationalOrganization(
+@Table(name = "edu_orgs")
+class EducationalOrganization(
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
-    @Column (name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     var id: Long,
 
-    @Column (name = "name")
+    @Column(name = "name")
     var name: String,
 
-    @Column (name = "city")
+    @Column(name = "city")
     var city: Int,
-    )
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "eduOrg")
+    var users: List<User>
+)

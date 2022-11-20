@@ -1,7 +1,7 @@
 package ru.mephi.pp.models.tasks
 
 enum class TaskStatus {
-    Complited,
+    Completed,
     Active,
-    Overdue,
+    Overdue
 }
