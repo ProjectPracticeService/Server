@@ -16,7 +16,7 @@ class MarkController {
     lateinit var markService: MarkService
 
     @GetMapping("/all")
-    fun getAll() = markService.getAll()
+    fun getAll() = "markService.getAll()"
 
     @GetMapping
     fun getById(@RequestParam id:Long){
