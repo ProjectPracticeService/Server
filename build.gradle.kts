@@ -49,10 +49,13 @@ dependencies {
 	implementation("org.yaml:snakeyaml:$yamlVersion")
 
 	// MySQL
-	implementation("com.mysql:mysql-connector-j:$mySQLVersion")
+//	implementation("com.mysql:mysql-connector-j:$mySQLVersion")
 
 	//БД
-	implementation("org.projectlombok:lombok")
+//	implementation("org.projectlombok:lombok")
+
+	//DTO
+	implementation("org.modelmapper:modelmapper:3.1.0")
 }
 
 tasks.withType<KotlinCompile> {

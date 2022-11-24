@@ -12,8 +12,8 @@ class AttendanceController {
     @Autowired
     lateinit var attendanceService: AttendanceService
 
-    @GetMapping("/all")
-    fun getAll() = attendanceService.getAll()
+//    @GetMapping("/all")
+//    fun getAll() = attendanceService.getAll()
 
 
     @GetMapping

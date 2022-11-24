@@ -11,11 +11,12 @@ class PpSystemApplication
 fun main(args: Array<String>) {
 
 	val props = Properties()
-	props["hibernate.connection.url"] = "jdbc:postgresql://localhost:5432/testdb"
-	props["hibernate.connection.username"] = "root"
-	props["hibernate.connection.password"] = "1234"
+	props["hibernate.connection.url"] = "jdbc:postgresql://localhost:8080/testdb"
+	props["hibernate.connection.username"] = "db"
+	props["hibernate.connection.password"] = "Password"
 //	props["hibernate.connection.driver_class"] = "com.mysql.cj.jdbc.Driver"
 	props["hibernate.show_sql"] = "true"
+
 
 	runApplication<PpSystemApplication>(*args)
 }

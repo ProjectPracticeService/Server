@@ -1,9 +1,6 @@
 package ru.mephi.pp.dto.project
 
-import ru.mephi.pp.models.user.User
-import javax.persistence.*
-
-class PortfolioProject(
+class PortfolioProjectDto(
     var userId: Long,
     var name: String,
     var description: String,

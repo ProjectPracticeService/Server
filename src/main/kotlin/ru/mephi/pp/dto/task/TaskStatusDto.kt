@@ -1,6 +1,6 @@
 package ru.mephi.pp.dto.task
 
-enum class TaskStatus {
+enum class TaskStatusDto {
     Completed,
     Active,
     Overdue

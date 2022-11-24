@@ -2,7 +2,7 @@ package ru.mephi.pp.dto.project
 
 import ru.mephi.pp.models.project.Status
 
-class Project(
+class ProjectDto(
     var students: List<Long>,
     var mentorId: Long,
     var tasks: List<Long>,
