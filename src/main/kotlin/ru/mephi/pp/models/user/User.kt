@@ -15,7 +15,7 @@ class User(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    var id: Long,
+    var id: Long? = null,
 
     @Column(name = "username")
     var username: String,
@@ -30,7 +30,7 @@ class User(
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Role::class)
     @Column(name = "roles")
-    var role: List<Role>,
+    var roles: List<Role> = listOf(Role.Student),
 
     @Column(name = "name")
     var name: String,
@@ -39,20 +39,20 @@ class User(
     var surname: String,
 
     @Column(name = "patronymic")
-    var patronymic: String,
+    var patronymic: String? = null,
 
     @Column(name = "status")
-    var status: String,
+    var status: String? = null,
 
     @Column(name = "telegram_id")
-    var telegramId: Long,
+    var telegramId: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "edu_org")
-    var eduOrg: EducationalOrganization,
+    var eduOrg: EducationalOrganization? = null,
 
     @OneToMany(mappedBy = "user")
-    var skills: List<Skill>,
+    var skills: List<Skill> = emptyList(),
 
     @ManyToMany
     @JoinTable(
@@ -60,7 +60,7 @@ class User(
         joinColumns = [JoinColumn(name = "student_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "project_id", referencedColumnName = "id")]
     )
-    var projectsAsStudent: List<Project>,
+    var projectsAsStudent: List<Project> = emptyList(),
 
     @ManyToMany
     @JoinTable(
@@ -68,17 +68,17 @@ class User(
         joinColumns = [JoinColumn(name = "student_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "task_id", referencedColumnName = "id")]
     )
-    var tasks: List<Task>,
+    var tasks: List<Task> = emptyList(),
 
     @OneToMany(mappedBy = "user")
-    var marks: List<Mark>,
+    var marks: List<Mark> = emptyList(),
 
     @OneToMany(mappedBy = "user")
-    var attendance: List<Attendance>,
+    var attendance: List<Attendance> = emptyList(),
 
     @OneToMany(mappedBy = "mentor")
-    var projectsAsMentor: List<Project>,
+    var projectsAsMentor: List<Project> = emptyList(),
 
     @OneToMany(mappedBy = "user")
-    var portfolioProjects: List<PortfolioProject>
+    var portfolioProjects: List<PortfolioProject> = emptyList()
 )
