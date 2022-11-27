@@ -1,4 +1,4 @@
-package ru.mephi.pp.dto.project
+package ru.mephi.pp.dto.undefined.project
 
 class PortfolioProjectDto(
     var userId: Long,

@@ -1,4 +1,4 @@
-package ru.mephi.pp.dto.mark
+package ru.mephi.pp.dto.undefined.mark
 
 import ru.mephi.pp.models.marks.MarkValue
 import java.sql.Timestamp

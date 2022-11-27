@@ -1,4 +1,4 @@
-package ru.mephi.pp.dto.attendance
+package ru.mephi.pp.dto.undefined.attendance
 
 import java.util.*
 

@@ -1,4 +1,4 @@
-package ru.mephi.pp.dto.task
+package ru.mephi.pp.dto.undefined.task
 
 enum class TaskStatusDto {
     Completed,

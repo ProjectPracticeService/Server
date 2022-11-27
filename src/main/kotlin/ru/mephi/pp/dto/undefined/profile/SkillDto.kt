@@ -1,4 +1,4 @@
-package ru.mephi.pp.dto.profile
+package ru.mephi.pp.dto.undefined.profile
 
 import ru.mephi.pp.models.profile.ProficiencyLevel
 

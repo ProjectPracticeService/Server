@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.project.PortfolioProjectDto
+import ru.mephi.pp.dto.undefined.project.PortfolioProjectDto
 import ru.mephi.pp.models.project.PortfolioProject
 import ru.mephi.pp.repo.PortfolioProjectRepo
 

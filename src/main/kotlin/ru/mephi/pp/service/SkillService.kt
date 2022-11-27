@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.profile.SkillDto
+import ru.mephi.pp.dto.undefined.profile.SkillDto
 import ru.mephi.pp.models.profile.Skill
 import ru.mephi.pp.repo.SkillRepo
 
