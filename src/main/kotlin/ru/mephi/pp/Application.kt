@@ -1,13 +1,11 @@
 package ru.mephi.pp
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
-import java.util.Properties
 
 @SpringBootApplication
-class PpSystemApplication
+class Application
 
 fun main(args: Array<String>) {
-	runApplication<PpSystemApplication>(*args)
+	runApplication<Application>(*args)
 }
