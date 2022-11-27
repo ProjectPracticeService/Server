@@ -24,7 +24,6 @@ class TokenFilter(
             if (StringUtils.hasText(header) && header.startsWith(authHeaderStart)) {
                 val token = header.substring(authHeaderStart.length)
                 if (tokenManager.validateAccessToken(token)) {
-                    println("mHeader = $header")
                     tokenManager.getAccessClaims(token).let { claims ->
                         val authData = JwtAuthData(
                             username = claims.subject,
