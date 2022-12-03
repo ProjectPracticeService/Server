@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody
 import ru.mephi.pp.dto.request.auth.CreateAccountDto
 import ru.mephi.pp.dto.request.auth.LoginDto
 import ru.mephi.pp.dto.response.auth.AuthTokenDto
-import ru.mephi.pp.dto.response.auth.JwtAuthData
 import ru.mephi.pp.service.AuthService
 import javax.validation.Valid
 
