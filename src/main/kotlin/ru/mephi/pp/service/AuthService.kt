@@ -1,13 +1,11 @@
 package ru.mephi.pp.service
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import ru.mephi.pp.dto.request.auth.CreateAccountDto
 import ru.mephi.pp.dto.request.auth.LoginDto
 import ru.mephi.pp.dto.request.auth.toEntity
 import ru.mephi.pp.dto.response.auth.AuthTokenDto
-import ru.mephi.pp.dto.response.auth.JwtAuthData
 import ru.mephi.pp.dto.response.auth.toEntity
 import ru.mephi.pp.exceptions.LoginException
 import ru.mephi.pp.exceptions.SignupException

@@ -15,7 +15,6 @@ class AttendanceController {
 //    @GetMapping("/all")
 //    fun getAll() = attendanceService.getAll()
 
-
     @GetMapping
     fun getById(@RequestParam id:Long){
         attendanceService.findById(id)
