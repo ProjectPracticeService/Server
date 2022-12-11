@@ -10,7 +10,7 @@ class EducationalOrganization(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    var id: Long,
+    var id: Long? = null,
 
     @Column(name = "name")
     var name: String,
@@ -19,5 +19,5 @@ class EducationalOrganization(
     var city: Int,
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "eduOrg")
-    var users: List<User>
+    var users: List<User> = emptyList(),
 )

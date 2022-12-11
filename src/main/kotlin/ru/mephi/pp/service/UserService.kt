@@ -1,10 +1,38 @@
 package ru.mephi.pp.service
 
+import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import ru.mephi.pp.dto.request.user.UserDto
+import ru.mephi.pp.models.user.User
 import ru.mephi.pp.repo.UserRepository
 
 @Service
-class UserService(
-    @Autowired private val userRepo: UserRepository
-) { }
+class UserService(@Autowired private val userCrudRepository: UserRepository
+) {
+
+    fun getAll(): MutableList<UserDto> {
+        var userFromRepo = userCrudRepository.findAll()
+        var users = mutableListOf<UserDto>()
+        for(a in userFromRepo){
+//            users.add(convertEntityToDto(a))
+        }
+        return users
+    }
+
+//    fun findById(id: Long) = convertEntityToDto(userCrudRepository.findById(id).get())
+
+    fun add(user: User) = userCrudRepository.save(user)
+
+    fun deleteById(id: Long) = userCrudRepository.deleteById(id)
+
+
+//    fun convertEntityToDto(user: User) : UserDto {
+//        val userDto : UserDto = UserDto(user.name, user.city)
+//        return userDto
+//    }
+//
+//    fun convertDtoToEntity(userDTO: UserDto) : User {
+//    }
+    
+}

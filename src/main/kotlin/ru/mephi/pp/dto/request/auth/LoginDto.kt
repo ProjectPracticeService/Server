@@ -4,6 +4,7 @@ import ru.mephi.pp.dto.validators.NotBlankOrNull
 import javax.validation.constraints.NotBlank
 
 data class LoginDto(
+
     @field:NotBlankOrNull
     val username: String,
 

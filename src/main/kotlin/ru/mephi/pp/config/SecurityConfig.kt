@@ -23,7 +23,7 @@ class SecurityConfig(
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests().antMatchers("/api/auth/signup", "/api/auth/login").permitAll()
-            .anyRequest().authenticated().and()
+            .anyRequest().permitAll().and()
             .addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter::class.java)
             .build()
     }

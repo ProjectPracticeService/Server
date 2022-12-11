@@ -25,7 +25,7 @@ class AuthService(
         if (userRepo.existsByEmail(user.email)) {
             throw SignupException("Failed, email already in use")
         }
-        if (userRepo.existsByUsername(user.username)) {
+        if (userRepo.existsByUsername(user.username)){
             throw SignupException("Failed, username already in use")
         }
         userRepo.save(user.toEntity())

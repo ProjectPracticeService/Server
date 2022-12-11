@@ -6,4 +6,4 @@ import org.springframework.stereotype.Repository
 import ru.mephi.pp.models.attendance.Attendance
 
 @Repository
-interface AttendanceRepo: JpaRepository<Attendance, Long>
+interface AttendanceRepo: CrudRepository<Attendance, Long>

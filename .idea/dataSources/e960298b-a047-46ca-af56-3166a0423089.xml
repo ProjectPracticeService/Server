@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="ProjectPracticeDB@localhost">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.43">
+    <root id="1">
+      <DefaultCasing>exact</DefaultCasing>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
+      <ServerVersion>8.0.31</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="ProjectPracticeDB">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sys"/>
+    <table id="7" parent="2" name="attendance">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="8" parent="2" name="edu_orgs">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="9" parent="2" name="hibernate_sequence">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="10" parent="2" name="marks">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="11" parent="2" name="portfolio_projects">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="12" parent="2" name="projects">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="13" parent="2" name="skills">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="14" parent="2" name="stacks">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="15" parent="2" name="students_projects">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="16" parent="2" name="students_tasks">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="17" parent="2" name="tasks">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="18" parent="2" name="tokens">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="19" parent="2" name="user_roles">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="20" parent="2" name="users">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <column id="21" parent="7" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="22" parent="7" name="date">
+      <DataType>datetime(6)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="23" parent="7" name="status">
+      <DataType>bit(1)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="24" parent="7" name="project_id">
+      <DataType>bigint|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="25" parent="7" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="26" parent="7" name="FKtna5q0v3gakrnglm45txjdwvi">
+      <ColNames>project_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>projects</RefTableName>
+    </foreign-key>
+    <foreign-key id="27" parent="7" name="FKjcaqd29v2qy723owsdah2t8vx">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="28" parent="7" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="29" parent="7" name="FKtna5q0v3gakrnglm45txjdwvi">
+      <ColNames>project_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="30" parent="7" name="FKjcaqd29v2qy723owsdah2t8vx">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="31" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="32" parent="8" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="33" parent="8" name="city">
+      <DataType>int|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="34" parent="8" name="name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <index id="35" parent="8" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="36" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="37" parent="9" name="next_val">
+      <DataType>bigint|0s</DataType>
+      <Position>1</Position>
+    </column>
+    <column id="38" parent="10" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="39" parent="10" name="date">
+      <DataType>datetime(6)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="40" parent="10" name="mark">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="41" parent="10" name="project_id">
+      <DataType>bigint|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="42" parent="10" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="43" parent="10" name="FKge2acip5sc4ots3tksu7ga7hg">
+      <ColNames>project_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>projects</RefTableName>
+    </foreign-key>
+    <foreign-key id="44" parent="10" name="FKexm2itxq6fj3pll51arpieejd">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="45" parent="10" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="46" parent="10" name="FKge2acip5sc4ots3tksu7ga7hg">
+      <ColNames>project_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="47" parent="10" name="FKexm2itxq6fj3pll51arpieejd">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="48" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="49" parent="11" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="50" parent="11" name="description">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="51" parent="11" name="name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="52" parent="11" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="53" parent="11" name="FK4odo6ty1d4q8v42ir20kkt14b">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="54" parent="11" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="55" parent="11" name="FK4odo6ty1d4q8v42ir20kkt14b">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="56" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="57" parent="12" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="58" parent="12" name="status">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="59" parent="12" name="mentor_id">
+      <DataType>bigint|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <foreign-key id="60" parent="12" name="FK3hf58ne0kos8bi6m3betgg4su">
+      <ColNames>mentor_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="61" parent="12" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="62" parent="12" name="FK3hf58ne0kos8bi6m3betgg4su">
+      <ColNames>mentor_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="63" parent="12" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="64" parent="13" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="65" parent="13" name="experience">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="66" parent="13" name="name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="67" parent="13" name="proficiency_level">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="68" parent="13" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="69" parent="13" name="FKo8dhr4cqp5nowj5o9km5fjhaq">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="70" parent="13" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="71" parent="13" name="FKo8dhr4cqp5nowj5o9km5fjhaq">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="72" parent="13" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="73" parent="14" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="74" parent="14" name="technology_stack">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="75" parent="14" name="FK5kucsnbhk6rw62uh1ne3rf6y4">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>portfolio_projects</RefTableName>
+    </foreign-key>
+    <index id="76" parent="14" name="FK5kucsnbhk6rw62uh1ne3rf6y4">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="77" parent="15" name="student_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="78" parent="15" name="project_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="79" parent="15" name="FKk3g8wco1uenuorcp69mpkdni4">
+      <ColNames>student_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <foreign-key id="80" parent="15" name="FK1g7u5gujbj8jj9jkm7l54l0u2">
+      <ColNames>project_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>projects</RefTableName>
+    </foreign-key>
+    <index id="81" parent="15" name="FKk3g8wco1uenuorcp69mpkdni4">
+      <ColNames>student_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="82" parent="15" name="FK1g7u5gujbj8jj9jkm7l54l0u2">
+      <ColNames>project_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="83" parent="16" name="student_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="84" parent="16" name="task_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="85" parent="16" name="FKk40sjahyoq1eo2fki2vnppxte">
+      <ColNames>student_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <foreign-key id="86" parent="16" name="FK7c53fno5h7s58lp1fel8ds823">
+      <ColNames>task_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>tasks</RefTableName>
+    </foreign-key>
+    <index id="87" parent="16" name="FKk40sjahyoq1eo2fki2vnppxte">
+      <ColNames>student_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="88" parent="16" name="FK7c53fno5h7s58lp1fel8ds823">
+      <ColNames>task_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="89" parent="17" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="90" parent="17" name="date_from">
+      <DataType>datetime(6)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="91" parent="17" name="date_to">
+      <DataType>datetime(6)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="92" parent="17" name="description">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="93" parent="17" name="status">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="94" parent="17" name="project_id">
+      <DataType>bigint|0s</DataType>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="95" parent="17" name="FKsfhn82y57i3k9uxww1s007acc">
+      <ColNames>project_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>projects</RefTableName>
+    </foreign-key>
+    <index id="96" parent="17" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="97" parent="17" name="FKsfhn82y57i3k9uxww1s007acc">
+      <ColNames>project_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="98" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="99" parent="18" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="100" parent="18" name="access_token">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="101" parent="18" name="refresh_token">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="102" parent="18" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <index id="103" parent="18" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="104" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="105" parent="19" name="user_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="106" parent="19" name="roles">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="107" parent="19" name="FKhfh9dx7w3ubf1co1vdev94g3f">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="108" parent="19" name="FKhfh9dx7w3ubf1co1vdev94g3f">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="109" parent="20" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="110" parent="20" name="email">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="111" parent="20" name="name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="112" parent="20" name="password">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="113" parent="20" name="patronymic">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="114" parent="20" name="status">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>6</Position>
+    </column>
+    <column id="115" parent="20" name="surname">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>7</Position>
+    </column>
+    <column id="116" parent="20" name="telegram_id">
+      <DataType>bigint|0s</DataType>
+      <Position>8</Position>
+    </column>
+    <column id="117" parent="20" name="username">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>9</Position>
+    </column>
+    <column id="118" parent="20" name="edu_org">
+      <DataType>bigint|0s</DataType>
+      <Position>10</Position>
+    </column>
+    <foreign-key id="119" parent="20" name="FK2y7p8jt26vruqi4c7csux2nja">
+      <ColNames>edu_org</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>edu_orgs</RefTableName>
+    </foreign-key>
+    <index id="120" parent="20" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="121" parent="20" name="FK2y7p8jt26vruqi4c7csux2nja">
+      <ColNames>edu_org</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="122" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
