@@ -1,12 +1,10 @@
 package ru.mephi.pp.service
 
-import org.modelmapper.ModelMapper
-import org.modelmapper.convention.MatchingStrategies
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.request.profile.EducationalOrganizationDto
-import ru.mephi.pp.models.profile.EducationalOrganization
-import ru.mephi.pp.repo.EducationalOrganizationRepo
+import ru.mephi.pp.model.dto.request.profile.EducationalOrganizationDto
+import ru.mephi.pp.model.entity.profile.EducationalOrganization
+import ru.mephi.pp.model.repository.EducationalOrganizationRepo
 
 @Service
 class EducationalOrganizationService {

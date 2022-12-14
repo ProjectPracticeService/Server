@@ -5,8 +5,8 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
 import org.springframework.web.filter.GenericFilterBean
-import ru.mephi.pp.dto.response.auth.JwtAuthData
-import ru.mephi.pp.models.user.Role
+import ru.mephi.pp.model.dto.response.auth.JwtAuthData
+import ru.mephi.pp.model.entity.user.Role
 import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse

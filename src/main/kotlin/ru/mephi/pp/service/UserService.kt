@@ -1,11 +1,10 @@
 package ru.mephi.pp.service
 
-import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.request.user.UserDto
-import ru.mephi.pp.models.user.User
-import ru.mephi.pp.repo.UserRepository
+import ru.mephi.pp.model.dto.request.user.UserDto
+import ru.mephi.pp.model.entity.user.User
+import ru.mephi.pp.model.repository.UserRepository
 
 @Service
 class UserService(@Autowired private val userCrudRepository: UserRepository

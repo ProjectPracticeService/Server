@@ -4,9 +4,9 @@ import org.modelmapper.ModelMapper
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.request.mark.MarkDto
-import ru.mephi.pp.models.marks.Mark
-import ru.mephi.pp.repo.MarkRepo
+import ru.mephi.pp.model.dto.request.mark.MarkDto
+import ru.mephi.pp.model.entity.marks.Mark
+import ru.mephi.pp.model.repository.MarkRepo
 
 @Service
 class MarkService {

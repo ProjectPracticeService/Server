@@ -2,15 +2,15 @@ package ru.mephi.pp.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.request.auth.CreateAccountDto
-import ru.mephi.pp.dto.request.auth.LoginDto
-import ru.mephi.pp.dto.request.auth.toEntity
-import ru.mephi.pp.dto.response.auth.AuthTokenDto
-import ru.mephi.pp.dto.response.auth.toEntity
-import ru.mephi.pp.exceptions.LoginException
-import ru.mephi.pp.exceptions.SignupException
-import ru.mephi.pp.repo.TokenRepository
-import ru.mephi.pp.repo.UserRepository
+import ru.mephi.pp.model.dto.request.auth.CreateAccountDto
+import ru.mephi.pp.model.dto.request.auth.LoginDto
+import ru.mephi.pp.model.dto.request.auth.toEntity
+import ru.mephi.pp.model.dto.response.auth.AuthTokenDto
+import ru.mephi.pp.model.dto.response.auth.toEntity
+import ru.mephi.pp.utils.exception.LoginException
+import ru.mephi.pp.utils.exception.SignupException
+import ru.mephi.pp.model.repository.TokenRepository
+import ru.mephi.pp.model.repository.UserRepository
 import ru.mephi.pp.utils.token.TokenManager
 import javax.transaction.Transactional
 

@@ -4,10 +4,10 @@ import org.modelmapper.ModelMapper
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.request.profile.SkillDto
+import ru.mephi.pp.model.dto.request.profile.SkillDto
 
-import ru.mephi.pp.models.profile.Skill
-import ru.mephi.pp.repo.SkillRepo
+import ru.mephi.pp.model.entity.profile.Skill
+import ru.mephi.pp.model.repository.SkillRepo
 
 @Service
 class SkillService(

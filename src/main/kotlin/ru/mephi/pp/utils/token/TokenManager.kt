@@ -5,7 +5,7 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
-import ru.mephi.pp.models.user.User
+import ru.mephi.pp.model.entity.user.User
 import java.security.Key
 import java.util.*
 

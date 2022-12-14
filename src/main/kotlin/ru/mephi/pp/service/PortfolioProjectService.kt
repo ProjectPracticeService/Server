@@ -4,9 +4,9 @@ import org.modelmapper.ModelMapper
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.request.project.PortfolioProjectDto
-import ru.mephi.pp.models.project.PortfolioProject
-import ru.mephi.pp.repo.PortfolioProjectRepo
+import ru.mephi.pp.model.dto.request.project.PortfolioProjectDto
+import ru.mephi.pp.model.entity.project.PortfolioProject
+import ru.mephi.pp.model.repository.PortfolioProjectRepo
 
 @Service
 class PortfolioProjectService {

@@ -1,14 +1,11 @@
 package ru.mephi.pp.service
 
-import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.dto.request.attendance.AttendanceDto
-import ru.mephi.pp.models.attendance.Attendance
-import ru.mephi.pp.models.project.Project
-import ru.mephi.pp.models.user.User
-import ru.mephi.pp.repo.AttendanceRepo
-import ru.mephi.pp.repo.UserRepository
+import ru.mephi.pp.model.dto.request.attendance.AttendanceDto
+import ru.mephi.pp.model.entity.attendance.Attendance
+import ru.mephi.pp.model.repository.AttendanceRepo
+import ru.mephi.pp.model.repository.UserRepository
 
 @Service
 class AttendanceService {
@@ -18,9 +15,9 @@ class AttendanceService {
     private lateinit var userCrudRepository: UserRepository
 //    private lateinit var projectCrudRepository: ProjectRepository
 
-    fun getAll(): MutableList<AttendanceDto> {
+    fun getAll(): MutableList<ru.mephi.pp.model.dto.request.attendance.AttendanceDto> {
         var attendanceFromRepo = attendanceCrudRepository.findAll()
-        var attendances = mutableListOf<AttendanceDto>()
+        var attendances = mutableListOf<ru.mephi.pp.model.dto.request.attendance.AttendanceDto>()
         for(a in attendanceFromRepo){
             attendances.add(convertEntityToDto(a))
         }
@@ -34,8 +31,14 @@ class AttendanceService {
     fun deleteById(id: Long) = attendanceCrudRepository.deleteById(id)
 
 
-    fun convertEntityToDto(attendance: Attendance) : AttendanceDto {
-        val attendanceDto : AttendanceDto = AttendanceDto(attendance.user.id, attendance.project.id, attendance.date, attendance.status)
+    fun convertEntityToDto(attendance: Attendance) : ru.mephi.pp.model.dto.request.attendance.AttendanceDto {
+        val attendanceDto : ru.mephi.pp.model.dto.request.attendance.AttendanceDto =
+            ru.mephi.pp.model.dto.request.attendance.AttendanceDto(
+                attendance.user.id,
+                attendance.project.id,
+                attendance.date,
+                attendance.status
+            )
         return attendanceDto
     }
 
