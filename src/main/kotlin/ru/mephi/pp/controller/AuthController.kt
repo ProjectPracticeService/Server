@@ -1,18 +1,20 @@
 package ru.mephi.pp.controller
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
-import ru.mephi.pp.model.dto.request.auth.CreateAccountDto
-import ru.mephi.pp.model.dto.request.auth.LoginDto
-import ru.mephi.pp.model.dto.response.auth.AuthTokenDto
+import ru.mephi.pp.model.dto.ApiResponse
+import ru.mephi.pp.model.dto.request.auth.AccessTokenRequest
+import ru.mephi.pp.model.dto.request.auth.NewAccountRequest
+import ru.mephi.pp.model.dto.request.auth.LoginRequest
+import ru.mephi.pp.model.dto.response.EmptyResponse
 import ru.mephi.pp.service.AuthService
 import javax.validation.Valid
 
@@ -23,21 +25,26 @@ class AuthController(
 ) {
     @PostMapping("/signup")
     @ResponseBody
-    fun signup(@Valid @RequestBody request: CreateAccountDto): ResponseEntity<String> {
+    fun signup(@Valid @RequestBody request: NewAccountRequest): ResponseEntity<ApiResponse> {
         authService.signup(request)
-        return ResponseEntity.status(HttpStatus.CREATED).body("User successfully created")
+        return EmptyResponse("User successfully created").asResponse()
     }
 
-    @GetMapping("/login")
+    @GetMapping("/signin")
     @ResponseBody
-    fun login(@Valid @RequestBody request: LoginDto): ResponseEntity<AuthTokenDto> {
-        val authToken = authService.login(request)
-        return ResponseEntity.status(HttpStatus.CREATED).body(authToken)
+    fun signin(@Valid @RequestBody request: LoginRequest): ResponseEntity<ApiResponse> {
+        return authService.signin(request).asResponse()
     }
 
-    @GetMapping("/self")
-    @PreAuthorize("hasAuthority('Student')")
-    fun self(): ResponseEntity<String> {
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body("ret.isOk() == true")
+    @GetMapping("/refresh")
+    @ResponseBody
+    fun refresh(@Valid @RequestBody request: AccessTokenRequest): ResponseEntity<ApiResponse> {
+        return authService.refresh(request.refreshToken).asResponse()
+    }
+
+    @PostMapping("/signout")
+    @ResponseBody
+    fun signout(auth: Authentication) {
+        authService.signout(auth.principal as Long)
     }
 }

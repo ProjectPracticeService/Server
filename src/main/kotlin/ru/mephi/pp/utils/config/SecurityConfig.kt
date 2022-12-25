@@ -10,6 +10,7 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import ru.mephi.pp.utils.token.TokenFilter
+import kotlin.reflect.typeOf
 
 @Configuration
 @EnableWebSecurity
@@ -17,13 +18,15 @@ import ru.mephi.pp.utils.token.TokenFilter
 class SecurityConfig(
     @Autowired private val tokenFilter: TokenFilter
 ) {
+    val permittedRoutes = arrayOf("/api/health*", "/api/auth/signup", "/api/auth/signin", "/api/auth/refresh")
+
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers("/api/auth/signup", "/api/auth/login").permitAll()
-            .anyRequest().permitAll().and() // TODO: Replace permitAll() with authenticated() here later!
+            .authorizeRequests().antMatchers(*permittedRoutes).permitAll()
+            .anyRequest().authenticated().and()
             .addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter::class.java)
             .build()
     }

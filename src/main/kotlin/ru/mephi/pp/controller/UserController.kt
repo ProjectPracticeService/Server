@@ -11,8 +11,7 @@ import ru.mephi.pp.service.UserService
 class UserController(
     @Autowired private val userService: UserService
 ) {
-
-    @GetMapping("/all")
+    @GetMapping("/")
     fun getAll() = userService.getAll()
 
 //    @GetMapping

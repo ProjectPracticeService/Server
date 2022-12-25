@@ -5,8 +5,7 @@ import ru.mephi.pp.model.dto.validators.NotBlankOrNull
 import ru.mephi.pp.model.entity.user.User
 import javax.validation.constraints.*
 
-
-data class CreateAccountDto(
+data class NewAccountRequest(
     @field:NotEmpty
     val username: String,
 
@@ -28,8 +27,7 @@ data class CreateAccountDto(
     val patronymic: String? = null
 )
 
-
-fun CreateAccountDto.toEntity() = User(
+fun NewAccountRequest.toEntity() = User(
     username = username,
     email = email,
     password = password,

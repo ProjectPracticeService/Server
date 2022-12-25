@@ -7,7 +7,8 @@ import ru.mephi.pp.model.entity.user.User
 import ru.mephi.pp.model.repository.UserRepository
 
 @Service
-class UserService(@Autowired private val userCrudRepository: UserRepository
+class UserService(
+    @Autowired private val userCrudRepository: UserRepository
 ) {
 
     fun getAll(): MutableList<UserDto> {

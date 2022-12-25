@@ -24,9 +24,9 @@ class TokenManager(
     fun generateAccessToken(user: User): String {
         return Date().let { date ->
             Jwts.builder()
-                .setSubject(user.username)
+                .setSubject(user.id?.toString())
                 .setIssuedAt(date)
-                .setExpiration(Date(date.time + accessTokenLimit * 1000))
+                .setExpiration(Date(date.time + accessTokenLimit * 1000L))
                 .claim("roles", user.roles)
                 .signWith(jwtSecretAccess)
                 .compact()
@@ -36,9 +36,9 @@ class TokenManager(
     fun generateRefreshToken(user: User): String {
         return Date().let { date ->
             Jwts.builder()
-                .setSubject(user.username)
+                .setSubject(user.id?.toString())
                 .setIssuedAt(date)
-                .setExpiration(Date(date.time + refreshTokenLimit * 1000))
+                .setExpiration(Date(date.time + refreshTokenLimit * 1000L))
                 .signWith(jwtSecretRefresh)
                 .compact()
         }
@@ -56,13 +56,14 @@ class TokenManager(
                 .parseClaimsJws(token)
             true
         } catch (e: Exception) {
+            println(e.message)
             false
         }
     }
 
     fun getAccessClaims(token: String) = getClaims(token, jwtSecretAccess)
 
-    fun getRefreshClaims(token: String) = validateToken(token, jwtSecretRefresh)
+    fun getRefreshClaims(token: String) = getClaims(token, jwtSecretRefresh)
 
     private fun getClaims(token: String, secret: Key): Claims {
         return Jwts.parserBuilder()
