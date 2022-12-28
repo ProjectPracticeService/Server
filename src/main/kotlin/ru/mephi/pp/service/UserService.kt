@@ -2,37 +2,67 @@ package ru.mephi.pp.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.model.dto.request.user.UserDto
+import ru.mephi.pp.model.dto.request.profile.UpdateProfileRequest
+import ru.mephi.pp.model.dto.response.user.UserInfo
+import ru.mephi.pp.model.dto.response.user.toDto
+import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.model.entity.user.User
+import ru.mephi.pp.model.repository.PortfolioRepository
+import ru.mephi.pp.model.repository.SkillRepository
 import ru.mephi.pp.model.repository.UserRepository
+import ru.mephi.pp.utils.exception.InputException
+import ru.mephi.pp.utils.exception.NotFoundException
 
 @Service
 class UserService(
-    @Autowired private val userCrudRepository: UserRepository
+    @Autowired private val userRepo: UserRepository,
+    @Autowired private val portfolioRepo: PortfolioRepository,
+    @Autowired private val skillRepo: SkillRepository
 ) {
-
-    fun getAll(): MutableList<UserDto> {
-        var userFromRepo = userCrudRepository.findAll()
-        var users = mutableListOf<UserDto>()
-        for(a in userFromRepo){
-//            users.add(convertEntityToDto(a))
-        }
-        return users
+    fun getUsers(filter: String, selfId: Long): List<UserInfo> {
+        return userRepo.findAll().filter {
+            it.name.contains(filter) || it.username.contains(filter) || it.surname.contains(filter)
+                    || it.patronymic?.contains(filter) ?: false
+        }.map { toDtoWrapper(it, selfId) }
     }
 
-//    fun findById(id: Long) = convertEntityToDto(userCrudRepository.findById(id).get())
+    fun getUserById(id: Long, selfId: Long): UserInfo {
+        return userRepo.getUserById(id)?.let { user ->
+            toDtoWrapper(user, selfId)
+        } ?: run {
+            throw NotFoundException()
+        }
+    }
 
-    fun add(user: User) = userCrudRepository.save(user)
+    fun setUserRoles(id: Long, roles: Set<Role>) {
+        if (roles.isEmpty()) throw InputException("Roles set is empty, at least one expected")
+        userRepo.getUserById(id)?.let { user ->
+            user.roles = roles
+            userRepo.save(user)
+        } ?: throw NotFoundException()
+    }
 
-    fun deleteById(id: Long) = userCrudRepository.deleteById(id)
+    fun getUserRoles(id: Long): Set<Role> {
+        return userRepo.getUserById(id)?.roles ?: run { throw NotFoundException() }
+    }
 
+    fun setUserProfile(id: Long, request: UpdateProfileRequest) {
+        userRepo.getUserById(id)?.let { user ->
+            if (request.name != null) user.name = request.name
+            if (request.surname != null) user.surname = request.surname
+            if (request.patronymic != null) user.patronymic = request.patronymic
+            if (request.status != null) user.status = request.status
+            if (request.telegramId != null) user.telegramId = request.telegramId
+            userRepo.save(user)
+        } ?: throw NotFoundException()
+    }
 
-//    fun convertEntityToDto(user: User) : UserDto {
-//        val userDto : UserDto = UserDto(user.name, user.city)
-//        return userDto
-//    }
-//
-//    fun convertDtoToEntity(userDTO: UserDto) : User {
-//    }
-    
+    private fun toDtoWrapper(user: User, selfId: Long): UserInfo {
+        val userId = user.id ?: -1
+        return user.toDto(
+            userId == selfId,
+            portfolioRepo.getPortfoliosByUserId(userId),
+            skillRepo.getSkillsByUserId(userId)
+        )
+    }
 }

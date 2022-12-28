@@ -14,7 +14,9 @@ import ru.mephi.pp.model.dto.ApiResponse
 import ru.mephi.pp.model.dto.request.auth.AccessTokenRequest
 import ru.mephi.pp.model.dto.request.auth.NewAccountRequest
 import ru.mephi.pp.model.dto.request.auth.LoginRequest
+import ru.mephi.pp.model.dto.request.auth.NewPasswordRequest
 import ru.mephi.pp.model.dto.response.EmptyResponse
+import ru.mephi.pp.model.dto.response.auth.AuthTokenInfo
 import ru.mephi.pp.service.AuthService
 import javax.validation.Valid
 
@@ -25,26 +27,31 @@ class AuthController(
 ) {
     @PostMapping("/signup")
     @ResponseBody
-    fun signup(@Valid @RequestBody request: NewAccountRequest): ResponseEntity<ApiResponse> {
+    fun signup(@Valid @RequestBody request: NewAccountRequest) {
         authService.signup(request)
-        return EmptyResponse("User successfully created").asResponse()
     }
 
     @GetMapping("/signin")
     @ResponseBody
-    fun signin(@Valid @RequestBody request: LoginRequest): ResponseEntity<ApiResponse> {
-        return authService.signin(request).asResponse()
+    fun signin(@Valid @RequestBody request: LoginRequest): AuthTokenInfo {
+        return authService.signin(request)
     }
 
     @GetMapping("/refresh")
     @ResponseBody
-    fun refresh(@Valid @RequestBody request: AccessTokenRequest): ResponseEntity<ApiResponse> {
-        return authService.refresh(request.refreshToken).asResponse()
+    fun refresh(@Valid @RequestBody request: AccessTokenRequest): AuthTokenInfo {
+        return authService.refresh(request.refreshToken)
     }
 
     @PostMapping("/signout")
     @ResponseBody
     fun signout(auth: Authentication) {
         authService.signout(auth.principal as Long)
+    }
+
+    @PostMapping("/pwd")
+    @ResponseBody
+    fun setPassword(@Valid @RequestBody request: NewPasswordRequest, auth: Authentication) {
+        authService.setPassword(auth.principal as Long, request)
     }
 }

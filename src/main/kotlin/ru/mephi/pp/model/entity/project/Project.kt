@@ -12,7 +12,13 @@ class Project(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    var id: Long,
+    var id: Long? = null,
+
+    @Column(name = "title")
+    var title: String,
+
+    @Column(name = "description")
+    var description: String,
 
     @ManyToMany(mappedBy = "projectsAsStudent")
     var students: List<User>,

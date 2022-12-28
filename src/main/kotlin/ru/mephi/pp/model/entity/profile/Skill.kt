@@ -9,7 +9,7 @@ class Skill(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    var id: Long,
+    var id: Long? = null,
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -18,10 +18,7 @@ class Skill(
     @Column(name = "name")
     var name: String,
 
-    @Column(name = "experience")
-    var experience: String,
-
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "proficiency_level")
+    @Column(name = "level")
     var profLevel: ProficiencyLevel
 )

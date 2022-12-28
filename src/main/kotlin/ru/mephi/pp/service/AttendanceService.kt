@@ -35,7 +35,7 @@ class AttendanceService {
         val attendanceDto : ru.mephi.pp.model.dto.request.attendance.AttendanceDto =
             ru.mephi.pp.model.dto.request.attendance.AttendanceDto(
                 attendance.user.id,
-                attendance.project.id,
+                attendance.project.id ?: -1,
                 attendance.date,
                 attendance.status
             )

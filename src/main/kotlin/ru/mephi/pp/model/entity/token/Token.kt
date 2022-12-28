@@ -1,6 +1,5 @@
 package ru.mephi.pp.model.entity.token
 
-import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -11,7 +10,7 @@ class Token(
     @Column(name = "id")
     var id: Long? = null,
 
-    @JoinColumn(name = "user_id")
+    @Column(name = "user_id")
     var userId: Long,
 
     @Column(name = "access_token")

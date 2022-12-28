@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 
 interface ApiResponse {
     val status: HttpStatus
-    val message: String
+    val message: String?
     val timestamp: LocalDateTime
 
     fun asResponse() = ResponseEntity.status(status).body(this)

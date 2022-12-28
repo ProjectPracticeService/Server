@@ -4,19 +4,19 @@ import ru.mephi.pp.model.entity.user.User
 import javax.persistence.*
 
 @Entity
-@Table(name = "portfolio_projects")
-class PortfolioProject(
+@Table(name = "portfolios")
+class Portfolio(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    var id: Long,
+    var id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     var user: User,
 
-    @Column(name = "name")
-    var name: String,
+    @Column(name = "title")
+    var title: String,
 
     @Column(name = "description")
     var description: String,

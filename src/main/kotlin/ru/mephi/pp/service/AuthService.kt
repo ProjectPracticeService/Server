@@ -2,10 +2,7 @@ package ru.mephi.pp.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.model.dto.request.auth.AccessTokenRequest
-import ru.mephi.pp.model.dto.request.auth.NewAccountRequest
-import ru.mephi.pp.model.dto.request.auth.LoginRequest
-import ru.mephi.pp.model.dto.request.auth.toEntity
+import ru.mephi.pp.model.dto.request.auth.*
 import ru.mephi.pp.model.dto.response.auth.AuthTokenInfo
 import ru.mephi.pp.model.dto.response.auth.toDto
 import ru.mephi.pp.model.dto.response.auth.toEntity
@@ -72,4 +69,14 @@ class AuthService(
 
     @Transactional
     fun signout(userId: Long) = tokenRepo.removeTokenByUserId(userId)
+
+    fun setPassword(userId: Long, request: NewPasswordRequest) {
+        userRepo.getUserById(userId)?.let { user ->
+            if (request.oldPassword != user.password) {
+                throw LoginException("Passwords do NOT match")
+            }
+            user.password = request.newPassword
+            userRepo.save(user)
+        } ?: run { throw NotFoundException() }
+    }
 }

@@ -2,9 +2,8 @@ package ru.mephi.pp.model.entity.user
 
 import ru.mephi.pp.model.entity.attendance.Attendance
 import ru.mephi.pp.model.entity.marks.Mark
-import ru.mephi.pp.model.entity.profile.EducationalOrganization
+import ru.mephi.pp.model.entity.profile.EduOrg
 import ru.mephi.pp.model.entity.profile.Skill
-import ru.mephi.pp.model.entity.project.PortfolioProject
 import ru.mephi.pp.model.entity.project.Project
 import ru.mephi.pp.model.entity.tasks.Task
 import javax.persistence.*
@@ -30,7 +29,7 @@ class User(
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Role::class)
     @Column(name = "roles")
-    var roles: List<Role> = listOf(Role.Student),
+    var roles: Set<Role> = setOf(Role.Student),
 
     @Column(name = "name")
     var name: String,
@@ -49,10 +48,7 @@ class User(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "edu_org")
-    var eduOrg: EducationalOrganization? = null,
-
-    @OneToMany(mappedBy = "user")
-    var skills: List<Skill> = emptyList(),
+    var eduOrg: EduOrg? = null,
 
     @ManyToMany
     @JoinTable(
@@ -78,7 +74,4 @@ class User(
 
     @OneToMany(mappedBy = "mentor")
     var projectsAsMentor: List<Project> = emptyList(),
-
-    @OneToMany(mappedBy = "user")
-    var portfolioProjects: List<PortfolioProject> = emptyList()
 )
