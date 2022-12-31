@@ -16,9 +16,6 @@ class User(
     @Column(name = "id")
     var id: Long? = null,
 
-    @Column(name = "username")
-    var username: String,
-
     @Column(name = "email")
     var email: String,
 

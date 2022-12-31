@@ -3,8 +3,8 @@ package ru.mephi.pp.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
-import ru.mephi.pp.model.dto.request.profile.SkillRequest
-import ru.mephi.pp.model.dto.response.profile.SkillInfo
+import ru.mephi.pp.model.dto.input.profile.SkillRequest
+import ru.mephi.pp.model.dto.info.profile.SkillInfo
 import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.service.SkillService
 import javax.validation.Valid

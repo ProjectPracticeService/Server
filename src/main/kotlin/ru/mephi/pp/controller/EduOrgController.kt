@@ -3,8 +3,8 @@ package ru.mephi.pp.controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
-import ru.mephi.pp.model.dto.request.profile.EduOrgRequest
-import ru.mephi.pp.model.dto.response.profile.EduOrgInfo
+import ru.mephi.pp.model.dto.input.profile.EduOrgInput
+import ru.mephi.pp.model.dto.info.profile.EduOrgInfo
 import ru.mephi.pp.service.EduOrgService
 import javax.validation.Valid
 
@@ -27,13 +27,13 @@ class EduOrgController(
 
     @PostMapping(value = ["", "/"])
     @PreAuthorize("hasRole('Admin')")
-    fun createEduOrg(@Valid @RequestBody request: EduOrgRequest) {
+    fun createEduOrg(@Valid @RequestBody request: EduOrgInput) {
         eduOrgService.createEduOrg(request)
     }
 
     @PutMapping("/{eduOrgId}")
     @PreAuthorize("hasRole('Admin')")
-    fun updateEduOrg(@PathVariable eduOrgId: String, @Valid @RequestBody request: EduOrgRequest) {
+    fun updateEduOrg(@PathVariable eduOrgId: String, @Valid @RequestBody request: EduOrgInput) {
         eduOrgService.updateEduOrg(eduOrgId.toLong(), request)
     }
 }

@@ -2,9 +2,9 @@ package ru.mephi.pp.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.model.dto.request.profile.UpdateProfileRequest
-import ru.mephi.pp.model.dto.response.user.UserInfo
-import ru.mephi.pp.model.dto.response.user.toDto
+import ru.mephi.pp.model.dto.input.profile.ProfileInput
+import ru.mephi.pp.model.dto.info.user.UserInfo
+import ru.mephi.pp.model.dto.info.user.toDto
 import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.model.entity.user.User
 import ru.mephi.pp.model.repository.PortfolioRepository
@@ -21,40 +21,41 @@ class UserService(
 ) {
     fun getUsers(filter: String, selfId: Long): List<UserInfo> {
         return userRepo.findAll().filter {
-            it.name.contains(filter) || it.username.contains(filter) || it.surname.contains(filter)
+            it.name.contains(filter) || it.surname.contains(filter)
                     || it.patronymic?.contains(filter) ?: false
         }.map { toDtoWrapper(it, selfId) }
     }
 
-    fun getUserById(id: Long, selfId: Long): UserInfo {
-        return userRepo.getUserById(id)?.let { user ->
+    fun getUserById(userId: Long, selfId: Long): UserInfo {
+        return userRepo.getUserById(userId)?.let { user ->
             toDtoWrapper(user, selfId)
         } ?: run {
-            throw NotFoundException()
+            throw NotFoundException("User with id=$userId is NOT found")
         }
     }
 
-    fun setUserRoles(id: Long, roles: Set<Role>) {
+    fun setUserRoles(userId: Long, roles: Set<Role>) {
         if (roles.isEmpty()) throw InputException("Roles set is empty, at least one expected")
-        userRepo.getUserById(id)?.let { user ->
+        userRepo.getUserById(userId)?.let { user ->
             user.roles = roles
             userRepo.save(user)
-        } ?: throw NotFoundException()
+        } ?: throw NotFoundException("User with id=$userId is NOT found")
     }
 
-    fun getUserRoles(id: Long): Set<Role> {
-        return userRepo.getUserById(id)?.roles ?: run { throw NotFoundException() }
+    fun getUserRoles(userId: Long): Set<Role> {
+        return userRepo.getUserById(userId)?.roles
+            ?: throw NotFoundException("User with id=$userId is NOT found")
     }
 
-    fun setUserProfile(id: Long, request: UpdateProfileRequest) {
-        userRepo.getUserById(id)?.let { user ->
+    fun setUserProfile(userId: Long, request: ProfileInput) {
+        userRepo.getUserById(userId)?.let { user ->
             if (request.name != null) user.name = request.name
             if (request.surname != null) user.surname = request.surname
             if (request.patronymic != null) user.patronymic = request.patronymic
             if (request.status != null) user.status = request.status
             if (request.telegramId != null) user.telegramId = request.telegramId
             userRepo.save(user)
-        } ?: throw NotFoundException()
+        } ?: throw NotFoundException("User with id=$userId is NOT found")
     }
 
     private fun toDtoWrapper(user: User, selfId: Long): UserInfo {

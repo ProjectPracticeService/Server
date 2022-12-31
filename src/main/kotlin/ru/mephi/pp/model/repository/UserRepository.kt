@@ -7,9 +7,8 @@ import ru.mephi.pp.model.entity.user.User
 
 @Repository
 interface UserRepository: CrudRepository<User, Long> {
-    fun existsByUsername(username: String): Boolean
     fun existsByEmail(email: String): Boolean
     fun getUserById(id: Long): User?
-    fun getUserByEmailOrUsername(email: String?, username: String?): User?
+    fun getUserByEmail(email: String): User?
     fun getUsersByEduOrg(eduOrg: EduOrg): List<User>
 }

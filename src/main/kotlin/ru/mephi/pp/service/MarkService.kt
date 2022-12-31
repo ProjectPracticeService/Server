@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.model.dto.request.mark.MarkDto
+import ru.mephi.pp.model.dto.input.mark.MarkDto
 import ru.mephi.pp.model.entity.marks.Mark
 import ru.mephi.pp.model.repository.MarkRepo
 
@@ -33,16 +33,14 @@ class MarkService {
     fun deleteById(id: Long) = markCrudRepository.deleteById(id)
 
     fun convertEntityToDto(mark: Mark) : MarkDto {
-        modelMapper.configuration
-            .setMatchingStrategy(MatchingStrategies.LOOSE)
+        modelMapper.configuration.matchingStrategy = MatchingStrategies.LOOSE
         var markDTO : MarkDto
         markDTO = modelMapper.map(mark, MarkDto::class.java)
         return markDTO
     }
 
     fun convertDtoToEntity(markDTO: MarkDto) : Mark {
-        modelMapper.configuration
-            .setMatchingStrategy(MatchingStrategies.LOOSE)
+        modelMapper.configuration.matchingStrategy = MatchingStrategies.LOOSE
         var mark : Mark
         mark = modelMapper.map(markDTO, Mark::class.java)
         return mark

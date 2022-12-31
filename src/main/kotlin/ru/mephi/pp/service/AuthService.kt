@@ -2,14 +2,13 @@ package ru.mephi.pp.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.model.dto.request.auth.*
-import ru.mephi.pp.model.dto.response.auth.AuthTokenInfo
-import ru.mephi.pp.model.dto.response.auth.toDto
-import ru.mephi.pp.model.dto.response.auth.toEntity
-import ru.mephi.pp.utils.exception.LoginException
-import ru.mephi.pp.utils.exception.SignupException
+import ru.mephi.pp.model.dto.input.auth.*
+import ru.mephi.pp.model.dto.info.auth.AuthTokenInfo
+import ru.mephi.pp.model.dto.info.auth.toDto
+import ru.mephi.pp.model.dto.info.auth.toEntity
 import ru.mephi.pp.model.repository.TokenRepository
 import ru.mephi.pp.model.repository.UserRepository
+import ru.mephi.pp.utils.exception.InputException
 import ru.mephi.pp.utils.exception.NotFoundException
 import ru.mephi.pp.utils.token.TokenManager
 import javax.transaction.Transactional
@@ -21,21 +20,18 @@ class AuthService(
     @Autowired private val tokenRepo: TokenRepository,
     @Autowired private val tokenManager: TokenManager
 ) {
-    fun signup(user: NewAccountRequest) {
+    fun signup(user: AccountInput) {
         if (userRepo.existsByEmail(user.email)) {
-            throw SignupException("Email already in use")
-        }
-        if (userRepo.existsByUsername(user.username)){
-            throw SignupException("Username already in use")
+            throw InputException("Email already in use")
         }
         userRepo.save(user.toEntity())
     }
 
     @Transactional
-    fun signin(request: LoginRequest): AuthTokenInfo {
-        return userRepo.getUserByEmailOrUsername(email = request.email, username = request.username)?.let { user ->
+    fun signin(request: CredentialsInput): AuthTokenInfo {
+        return userRepo.getUserByEmail(request.email)?.let { user ->
             if (user.password != request.password) {
-                throw LoginException("Passwords do NOT match")
+                throw InputException("Passwords do NOT match")
             }
             val userId = user.id ?: -1
             tokenRepo.removeTokenByUserId(userId)
@@ -47,7 +43,7 @@ class AuthService(
                 it
             }
         } ?: run {
-            throw NotFoundException()
+            throw NotFoundException("User with email=$request.email is NOT found")
         }
     }
 
@@ -64,19 +60,19 @@ class AuthService(
                 return token.toDto()
             }
         }
-        throw LoginException("Invalid refresh token")
+        throw InputException("Invalid refresh token")
     }
 
     @Transactional
     fun signout(userId: Long) = tokenRepo.removeTokenByUserId(userId)
 
-    fun setPassword(userId: Long, request: NewPasswordRequest) {
+    fun setPassword(userId: Long, request: PasswordInput) {
         userRepo.getUserById(userId)?.let { user ->
             if (request.oldPassword != user.password) {
-                throw LoginException("Passwords do NOT match")
+                throw InputException("Passwords do NOT match")
             }
             user.password = request.newPassword
             userRepo.save(user)
-        } ?: run { throw NotFoundException() }
+        } ?: run { throw NotFoundException("User with id=$userId is NOT found") }
     }
 }

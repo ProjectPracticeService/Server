@@ -5,8 +5,8 @@ import org.springframework.security.access.AccessDeniedException
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
-import ru.mephi.pp.model.dto.request.profile.UpdateProfileRequest
-import ru.mephi.pp.model.dto.response.user.UserInfo
+import ru.mephi.pp.model.dto.input.profile.ProfileInput
+import ru.mephi.pp.model.dto.info.user.UserInfo
 import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.service.EduOrgService
 import ru.mephi.pp.service.UserService
@@ -51,7 +51,7 @@ class UserController(
     @ResponseBody
     fun setUserProfile(
         @PathVariable userId: String,
-        @Valid @RequestBody request: UpdateProfileRequest,
+        @Valid @RequestBody request: ProfileInput,
         auth: Authentication
     ) {
         val realId = if (userId == "self") auth.principal as Long else userId.toLong()

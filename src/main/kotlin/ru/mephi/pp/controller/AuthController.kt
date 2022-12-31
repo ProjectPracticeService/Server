@@ -1,22 +1,18 @@
 package ru.mephi.pp.controller
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
-import ru.mephi.pp.model.dto.ApiResponse
-import ru.mephi.pp.model.dto.request.auth.AccessTokenRequest
-import ru.mephi.pp.model.dto.request.auth.NewAccountRequest
-import ru.mephi.pp.model.dto.request.auth.LoginRequest
-import ru.mephi.pp.model.dto.request.auth.NewPasswordRequest
-import ru.mephi.pp.model.dto.response.EmptyResponse
-import ru.mephi.pp.model.dto.response.auth.AuthTokenInfo
+import ru.mephi.pp.model.dto.input.auth.AccessTokenInput
+import ru.mephi.pp.model.dto.input.auth.AccountInput
+import ru.mephi.pp.model.dto.input.auth.CredentialsInput
+import ru.mephi.pp.model.dto.input.auth.PasswordInput
+import ru.mephi.pp.model.dto.info.auth.AuthTokenInfo
 import ru.mephi.pp.service.AuthService
 import javax.validation.Valid
 
@@ -27,19 +23,19 @@ class AuthController(
 ) {
     @PostMapping("/signup")
     @ResponseBody
-    fun signup(@Valid @RequestBody request: NewAccountRequest) {
+    fun signup(@Valid @RequestBody request: AccountInput) {
         authService.signup(request)
     }
 
     @GetMapping("/signin")
     @ResponseBody
-    fun signin(@Valid @RequestBody request: LoginRequest): AuthTokenInfo {
+    fun signin(@Valid @RequestBody request: CredentialsInput): AuthTokenInfo {
         return authService.signin(request)
     }
 
     @GetMapping("/refresh")
     @ResponseBody
-    fun refresh(@Valid @RequestBody request: AccessTokenRequest): AuthTokenInfo {
+    fun refresh(@Valid @RequestBody request: AccessTokenInput): AuthTokenInfo {
         return authService.refresh(request.refreshToken)
     }
 
@@ -51,7 +47,7 @@ class AuthController(
 
     @PostMapping("/pwd")
     @ResponseBody
-    fun setPassword(@Valid @RequestBody request: NewPasswordRequest, auth: Authentication) {
+    fun setPassword(@Valid @RequestBody request: PasswordInput, auth: Authentication) {
         authService.setPassword(auth.principal as Long, request)
     }
 }

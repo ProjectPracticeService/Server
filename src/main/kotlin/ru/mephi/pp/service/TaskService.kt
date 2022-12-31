@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper
 import org.modelmapper.convention.MatchingStrategies
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.model.dto.request.task.TaskDto
+import ru.mephi.pp.model.dto.input.task.TaskDto
 import ru.mephi.pp.model.entity.tasks.Task
 import ru.mephi.pp.model.repository.TaskRepo
 
@@ -33,16 +33,14 @@ class TaskService {
     fun deleteById(id: Long) = taskCrudRepository.deleteById(id)
 
     fun convertEntityToDto(task: Task) : TaskDto {
-        modelMapper.configuration
-            .setMatchingStrategy(MatchingStrategies.LOOSE)
+        modelMapper.configuration.matchingStrategy = MatchingStrategies.LOOSE
         var taskDTO : TaskDto
         taskDTO = modelMapper.map(task, TaskDto::class.java)
         return taskDTO
     }
 
     fun convertDtoToEntity(taskDTO: TaskDto) : Task {
-        modelMapper.configuration
-            .setMatchingStrategy(MatchingStrategies.LOOSE)
+        modelMapper.configuration.matchingStrategy = MatchingStrategies.LOOSE
         var task : Task
         task = modelMapper.map(taskDTO, Task::class.java)
         return task

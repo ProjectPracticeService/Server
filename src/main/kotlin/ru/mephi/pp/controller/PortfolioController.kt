@@ -3,8 +3,8 @@ package ru.mephi.pp.controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
-import ru.mephi.pp.model.dto.request.project.PortfolioRequest
-import ru.mephi.pp.model.dto.response.project.PortfolioInfo
+import ru.mephi.pp.model.dto.input.project.PortfolioInput
+import ru.mephi.pp.model.dto.info.project.PortfolioInfo
 import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.service.PortfolioService
 import javax.validation.Valid
@@ -36,7 +36,7 @@ class PortfolioController(
     @ResponseBody
     fun createUserPortfolio(
         @PathVariable userId: String,
-        @Valid @RequestBody request: PortfolioRequest,
+        @Valid @RequestBody request: PortfolioInput,
         auth: Authentication
     ) {
         val realId = if (userId == "self") auth.principal as Long else userId.toLong()
@@ -48,7 +48,7 @@ class PortfolioController(
     fun updateUserPortfolio(
         @PathVariable userId: String,
         @PathVariable portfolioId: String,
-        @Valid @RequestBody request: PortfolioRequest,
+        @Valid @RequestBody request: PortfolioInput,
         auth: Authentication
     ) {
         val realId = if (userId == "self") auth.principal as Long else userId.toLong()

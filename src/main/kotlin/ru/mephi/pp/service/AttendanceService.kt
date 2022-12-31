@@ -2,7 +2,7 @@ package ru.mephi.pp.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.model.dto.request.attendance.AttendanceDto
+import ru.mephi.pp.model.dto.input.attendance.AttendanceDto
 import ru.mephi.pp.model.entity.attendance.Attendance
 import ru.mephi.pp.model.repository.AttendanceRepo
 import ru.mephi.pp.model.repository.UserRepository
@@ -15,9 +15,9 @@ class AttendanceService {
     private lateinit var userCrudRepository: UserRepository
 //    private lateinit var projectCrudRepository: ProjectRepository
 
-    fun getAll(): MutableList<ru.mephi.pp.model.dto.request.attendance.AttendanceDto> {
+    fun getAll(): MutableList<AttendanceDto> {
         var attendanceFromRepo = attendanceCrudRepository.findAll()
-        var attendances = mutableListOf<ru.mephi.pp.model.dto.request.attendance.AttendanceDto>()
+        var attendances = mutableListOf<AttendanceDto>()
         for(a in attendanceFromRepo){
             attendances.add(convertEntityToDto(a))
         }
@@ -31,9 +31,9 @@ class AttendanceService {
     fun deleteById(id: Long) = attendanceCrudRepository.deleteById(id)
 
 
-    fun convertEntityToDto(attendance: Attendance) : ru.mephi.pp.model.dto.request.attendance.AttendanceDto {
-        val attendanceDto : ru.mephi.pp.model.dto.request.attendance.AttendanceDto =
-            ru.mephi.pp.model.dto.request.attendance.AttendanceDto(
+    fun convertEntityToDto(attendance: Attendance) : AttendanceDto {
+        val attendanceDto : AttendanceDto =
+            AttendanceDto(
                 attendance.user.id,
                 attendance.project.id ?: -1,
                 attendance.date,
