@@ -43,7 +43,7 @@ class AuthService(
                 it
             }
         } ?: run {
-            throw NotFoundException("User with email=$request.email is NOT found")
+            throw NotFoundException("User with email=${request.email} is NOT found")
         }
     }
 
