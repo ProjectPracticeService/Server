@@ -2,7 +2,7 @@ package ru.mephi.pp.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.mephi.pp.model.dto.input.profile.SkillRequest
+import ru.mephi.pp.model.dto.input.profile.SkillInput
 import ru.mephi.pp.model.dto.input.profile.toEntity
 import ru.mephi.pp.model.dto.info.profile.SkillInfo
 import ru.mephi.pp.model.dto.info.profile.toDto
@@ -27,13 +27,14 @@ class SkillService(
             ?: throw NotFoundException("User with id=$userId is NOT found")
     }
 
-    fun createUserSkill(userId: Long, request: SkillRequest) {
+    fun createUserSkill(userId: Long, input: SkillInput) {
         val user = userRepo.getUserById(userId)
             ?: throw NotFoundException("User with id=$userId is NOT found")
-        skillRepo.save(request.toEntity(user))
+        user.addToSkills(input.toEntity(user))
+        userRepo.save(user)
     }
 
-    fun updateUserSkill(userId: Long, isAdmin: Boolean, skillId: Long, request: SkillRequest) {
+    fun updateUserSkill(userId: Long, isAdmin: Boolean, skillId: Long, request: SkillInput) {
         skillRepo.getSkillByUserId(skillId)?.let { skill ->
             if (userId != skill.user.id && !isAdmin) {
                 throw AccessException("You must be admin, to modify user's (id=$userId) skill with id=$skillId")

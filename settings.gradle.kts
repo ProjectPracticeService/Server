@@ -1,4 +1,4 @@
-rootProject.name = "PPSystem"
+rootProject.name = "PPServer"
 
 pluginManagement {
     repositories {

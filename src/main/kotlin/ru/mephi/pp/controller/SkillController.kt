@@ -3,7 +3,7 @@ package ru.mephi.pp.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
-import ru.mephi.pp.model.dto.input.profile.SkillRequest
+import ru.mephi.pp.model.dto.input.profile.SkillInput
 import ru.mephi.pp.model.dto.info.profile.SkillInfo
 import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.service.SkillService
@@ -36,7 +36,7 @@ class SkillController(
     @ResponseBody
     fun createUserPortfolio(
         @PathVariable userId: String,
-        @Valid @RequestBody request: SkillRequest,
+        @Valid @RequestBody request: SkillInput,
         auth: Authentication
     ) {
         val realId = if (userId == "self") auth.principal as Long else userId.toLong()
@@ -48,7 +48,7 @@ class SkillController(
     fun updateUserPortfolio(
         @PathVariable userId: String,
         @PathVariable portfolioId: String,
-        @Valid @RequestBody request: SkillRequest,
+        @Valid @RequestBody request: SkillInput,
         auth: Authentication
     ) {
         val realId = if (userId == "self") auth.principal as Long else userId.toLong()

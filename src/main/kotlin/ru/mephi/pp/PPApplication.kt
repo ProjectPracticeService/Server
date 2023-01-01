@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 
 @SpringBootApplication
-class Application
+class PPApplication
 
 fun main(args: Array<String>) {
-	runApplication<Application>(*args)
+	runApplication<PPApplication>(*args)
 }
 
 @Controller

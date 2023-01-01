@@ -29,7 +29,7 @@ class PortfolioController(
         auth: Authentication
     ): PortfolioInfo {
         val realId = if (userId == "self") auth.principal as Long else userId.toLong()
-        return portfolioService.getUserPortfolio(realId)
+        return portfolioService.getUserPortfolio(realId, portfolioId.toLong())
     }
 
     @PostMapping(value = ["", "/"])

@@ -4,6 +4,7 @@ import ru.mephi.pp.model.entity.attendance.Attendance
 import ru.mephi.pp.model.entity.marks.Mark
 import ru.mephi.pp.model.entity.profile.EduOrg
 import ru.mephi.pp.model.entity.profile.Skill
+import ru.mephi.pp.model.entity.project.Portfolio
 import ru.mephi.pp.model.entity.project.Project
 import ru.mephi.pp.model.entity.tasks.Task
 import javax.persistence.*
@@ -47,6 +48,9 @@ class User(
     @JoinColumn(name = "edu_org")
     var eduOrg: EduOrg? = null,
 
+    @OneToMany(mappedBy = "user")
+    var skills: MutableList<Skill> = mutableListOf(),
+
     @ManyToMany
     @JoinTable(
         name = "students_projects",
@@ -71,4 +75,10 @@ class User(
 
     @OneToMany(mappedBy = "mentor")
     var projectsAsMentor: List<Project> = emptyList(),
-)
+
+    @OneToMany(mappedBy = "user")
+    var portfolios: MutableList<Portfolio> = mutableListOf()
+) {
+    fun addToSkills(skill: Skill) = skills.add(skill)
+    fun addToPortfolios(portfolio: Portfolio) = portfolios.add(portfolio)
+}
