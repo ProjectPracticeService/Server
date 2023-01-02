@@ -1,5 +1,6 @@
 package ru.mephi.pp.service
 
+import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import ru.mephi.pp.model.dto.input.auth.*
@@ -11,8 +12,6 @@ import ru.mephi.pp.model.repository.UserRepository
 import ru.mephi.pp.utils.exception.InputException
 import ru.mephi.pp.utils.exception.NotFoundException
 import ru.mephi.pp.utils.token.TokenManager
-import javax.transaction.Transactional
-
 
 @Service
 class AuthService(
@@ -29,22 +28,20 @@ class AuthService(
 
     @Transactional
     fun signin(request: CredentialsInput): AuthTokenInfo {
-        return userRepo.getUserByEmail(request.email)?.let { user ->
+        userRepo.getUserByEmail(request.email)?.let { user ->
             if (user.password != request.password) {
                 throw InputException("Passwords do NOT match")
             }
             val userId = user.id ?: -1
             tokenRepo.removeTokenByUserId(userId)
-            AuthTokenInfo(
+            val token = AuthTokenInfo(
                 accessToken = tokenManager.generateAccessToken(user),
                 refreshToken = tokenManager.generateRefreshToken(user)
-            ).let {
-                tokenRepo.save(it.toEntity(userId))
-                it
-            }
-        } ?: run {
-            throw NotFoundException("User with email=${request.email} is NOT found")
+            )
+            tokenRepo.save(token.toEntity(userId))
+            return token
         }
+        throw NotFoundException("User with email=${request.email} is NOT found")
     }
 
     fun refresh(refreshToken: String): AuthTokenInfo {

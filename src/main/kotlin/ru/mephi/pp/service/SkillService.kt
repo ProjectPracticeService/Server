@@ -1,5 +1,6 @@
 package ru.mephi.pp.service
 
+import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import ru.mephi.pp.model.dto.input.profile.SkillInput
@@ -11,7 +12,6 @@ import ru.mephi.pp.model.repository.SkillRepository
 import ru.mephi.pp.model.repository.UserRepository
 import ru.mephi.pp.utils.exception.AccessException
 import ru.mephi.pp.utils.exception.NotFoundException
-import javax.transaction.Transactional
 
 @Service
 class SkillService(
@@ -42,7 +42,7 @@ class SkillService(
             skill.name = request.name
             skill.profLevel = request.profLevel
             skillRepo.save(skill)
-        } ?: run { throw NotFoundException("Skill with id=$skillId is NOT found") }
+        } ?: throw NotFoundException("Skill with id=$skillId is NOT found")
     }
 
     @Transactional
@@ -52,6 +52,6 @@ class SkillService(
                 throw AccessException("You must be admin, to delete user's (id=$userId) skill with id=$skillId")
             }
             skillRepo.removeSkillById(skillId)
-        } ?: run { throw NotFoundException("User with id=$userId is NOT found") }
+        } ?: throw NotFoundException("User with id=$userId is NOT found")
     }
 }

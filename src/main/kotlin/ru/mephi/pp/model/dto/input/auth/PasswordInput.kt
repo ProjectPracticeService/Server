@@ -1,7 +1,6 @@
 package ru.mephi.pp.model.dto.input.auth
 
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.Size
+import jakarta.validation.constraints.*
 
 data class PasswordInput(
     @field:NotBlank

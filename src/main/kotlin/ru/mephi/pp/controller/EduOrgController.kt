@@ -1,12 +1,12 @@
 package ru.mephi.pp.controller
 
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.prepost.PreAuthorize
 import ru.mephi.pp.model.dto.input.profile.EduOrgInput
 import ru.mephi.pp.model.dto.info.profile.EduOrgInfo
 import ru.mephi.pp.service.EduOrgService
-import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/eduorgs")

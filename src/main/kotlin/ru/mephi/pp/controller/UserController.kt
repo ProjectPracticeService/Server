@@ -1,5 +1,6 @@
 package ru.mephi.pp.controller
 
+import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.access.AccessDeniedException
 import org.springframework.security.access.prepost.PreAuthorize
@@ -10,8 +11,6 @@ import ru.mephi.pp.model.dto.info.user.UserInfo
 import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.service.EduOrgService
 import ru.mephi.pp.service.UserService
-import javax.validation.Valid
-
 
 @RestController
 @RequestMapping("/api/users")
@@ -61,14 +60,14 @@ class UserController(
         userService.setUserProfile(realId, request)
     }
 
-    @PostMapping("{userId}/assign/{eduOrgId}")
+    @PostMapping("{userId}/eduorg/{eduOrgId}")
     @PreAuthorize("hasRole('Admin')")
     fun assignEduOrg(@PathVariable userId: String, @PathVariable eduOrgId: String, auth: Authentication) {
         val realId = if (userId == "self") auth.principal as Long else userId.toLong()
         eduOrgService.assignEduOrg(eduOrgId.toLong(), realId)
     }
 
-    @DeleteMapping("{userId}/assign")
+    @DeleteMapping("{userId}/eduorg")
     @PreAuthorize("hasRole('Admin')")
     fun deAssignEduOrg(@PathVariable userId: String, auth: Authentication) {
         val realId = if (userId == "self") auth.principal as Long else userId.toLong()

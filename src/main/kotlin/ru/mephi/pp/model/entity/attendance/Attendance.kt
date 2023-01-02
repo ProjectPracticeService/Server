@@ -1,8 +1,9 @@
 package ru.mephi.pp.model.entity.attendance
+
 import ru.mephi.pp.model.entity.project.Project
 import ru.mephi.pp.model.entity.user.User
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "attendance")

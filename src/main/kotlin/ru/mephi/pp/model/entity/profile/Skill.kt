@@ -1,7 +1,7 @@
 package ru.mephi.pp.model.entity.profile
 
+import jakarta.persistence.*
 import ru.mephi.pp.model.entity.user.User
-import javax.persistence.*
 
 @Entity
 @Table(name = "skills")

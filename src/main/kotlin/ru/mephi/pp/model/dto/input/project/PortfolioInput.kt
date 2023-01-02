@@ -2,8 +2,7 @@ package ru.mephi.pp.model.dto.input.project
 
 import ru.mephi.pp.model.entity.project.Portfolio
 import ru.mephi.pp.model.entity.user.User
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotEmpty
+import jakarta.validation.constraints.*
 
 data class PortfolioInput(
     @field:NotBlank

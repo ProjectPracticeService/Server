@@ -3,7 +3,7 @@ package ru.mephi.pp.model.entity.marks
 import ru.mephi.pp.model.entity.project.Project
 import ru.mephi.pp.model.entity.user.User
 import java.sql.Timestamp
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "marks")

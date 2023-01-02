@@ -25,7 +25,7 @@ class SecurityConfig(
         return http
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers(*permittedRoutes).permitAll()
+            .authorizeHttpRequests().requestMatchers(*permittedRoutes).permitAll()
             .anyRequest().authenticated().and()
             .addFilterAfter(tokenFilter, UsernamePasswordAuthenticationFilter::class.java)
             .build()

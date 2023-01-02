@@ -7,16 +7,16 @@ import org.springframework.util.StringUtils
 import org.springframework.web.filter.GenericFilterBean
 import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.model.repository.TokenRepository
-import javax.servlet.FilterChain
-import javax.servlet.ServletRequest
-import javax.servlet.ServletResponse
-import javax.servlet.http.HttpServletRequest
+import jakarta.servlet.FilterChain
+import jakarta.servlet.ServletRequest
+import jakarta.servlet.ServletResponse
+import jakarta.servlet.http.HttpServletRequest
 
 @Component
 class TokenFilter(
     @Autowired private val tokenManager: TokenManager,
     @Autowired private val tokenRepo: TokenRepository
-): GenericFilterBean() {
+) : GenericFilterBean() {
     private val authHeaderName = "Authorization"
     private val authHeaderStart = "Bearer "
 

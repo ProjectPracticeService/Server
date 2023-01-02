@@ -1,5 +1,6 @@
 package ru.mephi.pp.controller
 
+import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Controller
@@ -14,7 +15,6 @@ import ru.mephi.pp.model.dto.input.auth.CredentialsInput
 import ru.mephi.pp.model.dto.input.auth.PasswordInput
 import ru.mephi.pp.model.dto.info.auth.AuthTokenInfo
 import ru.mephi.pp.service.AuthService
-import javax.validation.Valid
 
 @Controller
 @RequestMapping("api/auth")

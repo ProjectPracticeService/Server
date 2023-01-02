@@ -1,10 +1,10 @@
 package ru.mephi.pp.model.entity.project
 
+import jakarta.persistence.*
 import ru.mephi.pp.model.entity.attendance.Attendance
 import ru.mephi.pp.model.entity.marks.Mark
 import ru.mephi.pp.model.entity.tasks.Task
 import ru.mephi.pp.model.entity.user.User
-import javax.persistence.*
 
 @Entity
 @Table(name = "projects")

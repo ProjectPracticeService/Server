@@ -3,7 +3,7 @@ package ru.mephi.pp.model.dto.input.auth
 import com.fasterxml.jackson.annotation.JsonInclude
 import ru.mephi.pp.utils.validators.NotBlankOrNull
 import ru.mephi.pp.model.entity.user.User
-import javax.validation.constraints.*
+import jakarta.validation.constraints.*
 
 data class AccountInput(
     @field:NotBlank

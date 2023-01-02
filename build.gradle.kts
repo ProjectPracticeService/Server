@@ -1,21 +1,21 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kotlinVersion = "1.7.20"
-val springBootVersion = "2.7.5"
+val kotlinVersion = "1.8.0"
+val springBootVersion = "3.0.1"
 val jacksonVersion = "2.14.0"
 val mySQLVersion = "8.0.31"
 val jwtVersion = "0.11.5"
 
 plugins {
-	id("org.springframework.boot") version "2.7.5"
+	id("org.springframework.boot") version "3.0.1"
 	id("io.spring.dependency-management") version "1.1.0"
-	kotlin("jvm") version "1.7.20"
-	kotlin("plugin.spring") version "1.7.20"
-	kotlin("plugin.jpa") version "1.7.20"
+	kotlin("jvm") version "1.8.0"
+	kotlin("plugin.spring") version "1.8.0"
+	kotlin("plugin.jpa") version "1.8.0"
 }
 
 group = "ru.mephi"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {

@@ -1,6 +1,6 @@
 package ru.mephi.pp.model.dto.input.auth
 
-import javax.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotBlank
 
 data class AccessTokenInput(
     @field:NotBlank

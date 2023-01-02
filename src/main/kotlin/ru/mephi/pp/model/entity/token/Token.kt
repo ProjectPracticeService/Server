@@ -1,6 +1,6 @@
 package ru.mephi.pp.model.entity.token
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "tokens")

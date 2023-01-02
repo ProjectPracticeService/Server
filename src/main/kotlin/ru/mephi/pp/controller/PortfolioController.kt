@@ -7,7 +7,7 @@ import ru.mephi.pp.model.dto.input.project.PortfolioInput
 import ru.mephi.pp.model.dto.info.project.PortfolioInfo
 import ru.mephi.pp.model.entity.user.Role
 import ru.mephi.pp.service.PortfolioService
-import javax.validation.Valid
+import jakarta.validation.Valid
 
 @RestController
 @RequestMapping("/api/users/{userId}/portfolio")

@@ -1,8 +1,7 @@
 package ru.mephi.pp.model.dto.input.profile
 
+import jakarta.validation.constraints.*
 import ru.mephi.pp.model.entity.profile.EduOrg
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotEmpty
 
 data class EduOrgInput(
     @field:NotBlank

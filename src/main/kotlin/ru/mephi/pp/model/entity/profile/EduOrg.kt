@@ -1,6 +1,6 @@
 package ru.mephi.pp.model.entity.profile
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "edu_orgs")

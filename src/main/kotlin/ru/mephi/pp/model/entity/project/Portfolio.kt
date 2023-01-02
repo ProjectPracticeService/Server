@@ -1,7 +1,7 @@
 package ru.mephi.pp.model.entity.project
 
 import ru.mephi.pp.model.entity.user.User
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "portfolios")

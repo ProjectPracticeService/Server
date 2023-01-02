@@ -1,5 +1,6 @@
 package ru.mephi.pp.model.entity.user
 
+import jakarta.persistence.*
 import ru.mephi.pp.model.entity.attendance.Attendance
 import ru.mephi.pp.model.entity.marks.Mark
 import ru.mephi.pp.model.entity.profile.EduOrg
@@ -7,7 +8,6 @@ import ru.mephi.pp.model.entity.profile.Skill
 import ru.mephi.pp.model.entity.project.Portfolio
 import ru.mephi.pp.model.entity.project.Project
 import ru.mephi.pp.model.entity.tasks.Task
-import javax.persistence.*
 
 @Entity
 @Table(name = "users")

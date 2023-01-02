@@ -1,9 +1,9 @@
 package ru.mephi.pp.model.entity.tasks
 
+import jakarta.persistence.*
 import ru.mephi.pp.model.entity.project.Project
 import ru.mephi.pp.model.entity.user.User
 import java.util.*
-import javax.persistence.*
 
 @Entity
 @Table(name = "tasks")
