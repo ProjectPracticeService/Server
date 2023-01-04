@@ -5,6 +5,8 @@ val springBootVersion = "3.0.1"
 val jacksonVersion = "2.14.0"
 val mySQLVersion = "8.0.31"
 val jwtVersion = "0.11.5"
+val jUnitVersion = "5.9.1"
+val assertJVersion = "3.23.1"
 
 plugins {
 	id("org.springframework.boot") version "3.0.1"
@@ -45,6 +47,12 @@ dependencies {
 	api("io.jsonwebtoken:jjwt-api:$jwtVersion")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:$jwtVersion")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jwtVersion")
+
+	// JUnit
+	testImplementation("org.junit.jupiter:junit-jupiter:$jUnitVersion")
+
+	// AssertJ
+	testImplementation("org.assertj:assertj-core:$assertJVersion")
 
 	//DTO
 	implementation("org.modelmapper:modelmapper:3.1.0")
