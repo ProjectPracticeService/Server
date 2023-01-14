@@ -16,15 +16,11 @@ data class MarkInfo(
     var id: Long,
     var mark: MarkValue,
     var date: Timestamp,
-    var projectIds: Long,
-    var userId: Long
 
     )
 
 fun Mark.toDto(project: Project, user: User) = MarkInfo(
     id = id ?: -1,
     mark = mark,
-    date = date,
-    projectIds = projects.map { it.id ?: -1 },
-    usersIds = users.map { it.id ?: -1 }
+    date = date
 )
