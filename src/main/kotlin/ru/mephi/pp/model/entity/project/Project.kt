@@ -24,8 +24,8 @@ class Project(
     var students: List<User>,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    var user: User,
+    @JoinColumn(name = "mentor_id")
+    var mentor: User,
 
     @OneToMany(mappedBy = "project")
     var tasks: List<Task>,

@@ -8,7 +8,7 @@ data class ProjectInfo(
     val title: String,
     val status: Status,
     val students: List<ParticipantInfo>,
-    val user: ParticipantInfo
+    val mentor: ParticipantInfo
 )
 
 fun Project.toDto() = ProjectInfo(
@@ -16,5 +16,5 @@ fun Project.toDto() = ProjectInfo(
     title = title,
     status = status,
     students = students.map { it.toDto() },
-    user = user.toDto()
+    mentor = mentor.toDto()
 )

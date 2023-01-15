@@ -5,7 +5,7 @@ val springBootVersion = "3.0.1"
 val jacksonVersion = "2.14.0"
 val mySQLVersion = "8.0.31"
 val jwtVersion = "0.11.5"
-val jUnitVersion = "5.9.1"
+val jUnitVersion = "5.8.1"
 val assertJVersion = "3.23.1"
 
 plugins {
@@ -49,7 +49,16 @@ dependencies {
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jwtVersion")
 
 	// JUnit
-	testImplementation("org.junit.jupiter:junit-jupiter:$jUnitVersion")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.1")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.1")
+
+	//Mockk
+	testImplementation ("io.mockk:mockk:1.12.4")
+
+	//Mockito
+	testImplementation ("org.mockito:mockito-core:4.0.0")
+	testImplementation ("org.mockito:mockito-inline:4.0.0")
+	testImplementation ("org.mockito.kotlin:mockito-kotlin:4.0.0")
 
 	// AssertJ
 	testImplementation("org.assertj:assertj-core:$assertJVersion")
