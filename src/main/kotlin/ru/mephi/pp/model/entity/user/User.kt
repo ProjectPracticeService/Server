@@ -38,6 +38,7 @@ class User(
     @Column(name = "patronymic")
     var patronymic: String? = null,
 
+    // Вместо String -> Role ?
     @Column(name = "status")
     var status: String? = null,
 
