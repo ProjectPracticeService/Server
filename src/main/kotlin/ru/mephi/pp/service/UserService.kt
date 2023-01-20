@@ -33,13 +33,6 @@ class UserService(
         }.map { toDtoWrapper(it, selfId) }
     }
 
-    fun getMentors(filter: String, selfId: Long): List<UserInfo> {
-        return userRepo.findAll().filter { it.status == "Mentor"}.filter {
-            it.name.contains(filter) || it.surname.contains(filter)
-                    || it.patronymic?.contains(filter) ?: false
-        }.map { toDtoWrapper(it, selfId) }
-    }
-
     fun getUserById(userId: Long, selfId: Long): UserInfo {
         return userRepo.getUserById(userId)?.let { user ->
             toDtoWrapper(user, selfId)
@@ -64,16 +57,6 @@ class UserService(
             ?: throw NotFoundException("User with id=$userId is NOT found")
     }
 
-    fun getUserActiveProjects(userId: Long): List<ProjectInfo> {
-        var projectList = userRepo.getUserById(userId)?.projectsAsMentor?.map { it.toDto() }
-            ?: throw NotFoundException("User with id=$userId is NOT found")
-        for(p in projectList!!){
-            if(p.status != Status.Active){
-                projectList.drop(projectList.indexOf(p))
-            }
-        }
-        return projectList
-    }
 
     //POST
 

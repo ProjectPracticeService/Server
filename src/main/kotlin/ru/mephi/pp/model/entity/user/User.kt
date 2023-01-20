@@ -66,7 +66,7 @@ class User(
         joinColumns = [JoinColumn(name = "student_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "task_id", referencedColumnName = "id")]
     )
-    var tasks: List<Task> = emptyList(),
+    var tasks: MutableList<Task> = mutableListOf(),
 
     @OneToMany(mappedBy = "user")
     var marks: List<Mark> = emptyList(),
@@ -82,4 +82,5 @@ class User(
 ) {
     fun addToSkills(skill: Skill) = skills.add(skill)
     fun addToPortfolios(portfolio: Portfolio) = portfolios.add(portfolio)
+    fun addToTask(task: Task) = tasks.add(task)
 }

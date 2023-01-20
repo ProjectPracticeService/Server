@@ -28,11 +28,6 @@ class UserController(
         return userService.getUsers(filter, auth.principal as Long)
     }
 
-    @GetMapping(value = ["", "/"])
-    @ResponseBody
-    fun getMentors(@RequestParam filter: String, auth: Authentication): List<UserInfo> {
-        return userService.getMentors(filter, auth.principal as Long)
-    }
 
     @GetMapping("/{userId}")
     @ResponseBody
@@ -62,12 +57,6 @@ class UserController(
         return userService.getUserProjectAsMentor(realId)
     }
 
-    @GetMapping("{userId}/projects/mentor")
-    @ResponseBody
-    fun getUserActiveProject(@PathVariable userId: String, auth: Authentication): List<ProjectInfo>  {
-        val realId = if (userId == "self") auth.principal as Long else userId.toLong()
-        return userService.getUserActiveProjects(realId)
-    }
 
 
     //POST
