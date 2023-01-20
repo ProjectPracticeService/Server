@@ -5,4 +5,8 @@ import org.springframework.stereotype.Repository
 import ru.mephi.pp.model.entity.marks.Mark
 
 @Repository
-interface MarkRepo: CrudRepository<Mark, Long>
+interface MarkRepo: CrudRepository<Mark, Long>{
+
+    fun getMarkByUserIdAndProjectId(userId: Long, projectId: Long): List<Mark>
+    fun getMarkByUserId(userId: Long): List<Mark>
+}

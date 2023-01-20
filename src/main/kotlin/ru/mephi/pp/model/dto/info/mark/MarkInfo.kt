@@ -19,7 +19,7 @@ data class MarkInfo(
 
     )
 
-fun Mark.toDto(project: Project, user: User) = MarkInfo(
+fun Mark.toDto() = MarkInfo(
     id = id ?: -1,
     mark = mark,
     date = date
