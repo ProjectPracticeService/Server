@@ -34,31 +34,26 @@ internal class EduOrgServiceTest {
 
     @BeforeEach
     @Test
-    fun setup() {
+    fun setupRepo() {
         // data
         val data = mutableListOf(
             EduOrg(1, "Mephi", 1),
             EduOrg(2, "MSU", 2),
             EduOrg(3, "HSE", 2)
         )
-        val eduOrg = EduOrg(3, "second", 2)
         val user = User(1,"test@mail.ru", "qwerty", setOf(Role.Mentor), "Paul", "Conor", "", "", 123, data.get(0))
 
         // userRepo
         Mockito.`when`(userRepository.getUserById(1)).thenReturn(user)
-        Mockito.`when`(userRepository.save(user)).thenReturn(user)
         Mockito.`when`(userRepository.getUsersByEduOrg(data.get(0))).thenReturn(listOf(user))
 
         // eduOrgRepo
         Mockito.`when`(eduOrgRepository.findAll()).thenReturn(data)
         Mockito.`when`(eduOrgRepository.getEduOrgById(1)).thenReturn(data.get(0))
-
-        Mockito.`when`(eduOrgRepository.save(eduOrg)).thenReturn(eduOrg)
-
     }
 
     @Test
-    fun `educational organization filter`(){
+    fun `educational organization filter in getEduOrgs`(){
         if (eduOrgService.getEduOrgs("H").get(0).id != 3.toLong() ||
             eduOrgService.getEduOrgs("H").size != 1 ||
             eduOrgService.getEduOrgs("M").size != 2
