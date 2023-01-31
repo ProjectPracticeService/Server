@@ -63,24 +63,25 @@ internal class UserServiceTest {
     fun `wrapping an object in getUserById`() {
 
        val user = data.get(0)
+        val userInfo = userService.getUserById(1,1)
 
-        if(userService.getUserById(1,1).id != user.id){
+        if(userInfo.id != user.id){
             fail("id error when wrapping")
         }
 
-        if(userService.getUserById(1,1).patronymic != user.patronymic){
+        if(userInfo.patronymic != user.patronymic){
             fail("patronymic error when wrapping")
         }
 
-        if(userService.getUserById(1,1).email != user.email){
+        if(userInfo.email != user.email){
             fail("email error when wrapping")
         }
 
-        if(userService.getUserById(1,1).status != user.status){
+        if(userInfo.status != user.status){
             fail("status error when wrapping")
         }
 
-        if(userService.getUserById(1,1).surname != user.surname){
+        if(userInfo.surname != user.surname){
             fail("surname error when wrapping")
         }
 

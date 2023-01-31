@@ -1,8 +1,5 @@
 package ru.mephi.pp.service
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -54,18 +51,21 @@ internal class EduOrgServiceTest {
 
     @Test
     fun `educational organization filter in getEduOrgs`(){
-        if (eduOrgService.getEduOrgs("H").get(0).id != 3.toLong() ||
-            eduOrgService.getEduOrgs("H").size != 1 ||
-            eduOrgService.getEduOrgs("M").size != 2
+        val eduOrgInfoFirstList = eduOrgService.getEduOrgs("H")
+        val eduOrgInfoSecondList = eduOrgService.getEduOrgs("M")
+        if (eduOrgInfoFirstList.get(0).id != 3.toLong() ||
+            eduOrgInfoFirstList.size != 1 ||
+            eduOrgInfoSecondList.size != 2
         ){ fail("the filter is not working correctly") }
     }
 
 
     @Test
     fun `wrapping an object in getEduOrgById`() {
-        if(eduOrgService.getEduOrgById(1).id != 1.toLong() ||
-                eduOrgService.getEduOrgById(1).name != "Mephi" ||
-                eduOrgService.getEduOrgById(1).city != 1.toLong()
+        val eduOrgInfo = eduOrgService.getEduOrgById(1)
+        if(eduOrgInfo.id != 1.toLong() ||
+            eduOrgInfo.name != "Mephi" ||
+            eduOrgInfo.city != 1.toLong()
         ){ fail("the wrong object was received") }
     }
 
