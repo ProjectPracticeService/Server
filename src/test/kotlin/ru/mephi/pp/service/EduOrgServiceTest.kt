@@ -25,6 +25,7 @@ import java.util.*
 
 internal class EduOrgServiceTest {
 
+
     val eduOrgRepository = Mockito.mock(EduOrgRepository::class.java)
     val userRepository = Mockito.mock(UserRepository::class.java)
     val eduOrgService = EduOrgService(eduOrgRepository, userRepository)
